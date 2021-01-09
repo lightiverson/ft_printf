@@ -140,9 +140,8 @@ void strprintf(char *fmt, ...)
 	p = fmt;
 	while (*p)
 	{
-		if (*p != '%') { /* Handeld ordinary characters. */
-			putchar(*p);
-		}
+		if (*p != '%') /* Handeld ordinary characters. */
+			printf("%c", *p);
 		else /* huidige character is een percentage */
 		{
 			/* Zolang de eerstvolgende character geen conversion character is, handel elke flag? */
@@ -151,36 +150,42 @@ void strprintf(char *fmt, ...)
 
 			if (*p == '-') /* Left-align the output of this placeholder. (The default is to right-align the output.) */
 			{
-				printf("\n'-' sign found.\n");
+				printf("\nis_left_align = TRUE\n");
 				p++;
 			}
 
 			if (*p == '0') /* When the 'width' option is specified, prepends zeros for numeric types. (The default prepends spaces.) */
 			{
-				printf("\n'0' sign found.\n");
+				printf("\nis_zeroed = TRUE\n");
 				p++;
 			}
 
 			if (isdigit(*p)) /* The Width field specifies a minimum number of characters to output, */
 			{
-				printf("\nWidth found. with = %s\n", ft_itoa(*p));
+				printf("\nwidth = %d\n", atoi(p));
 				while (isdigit(*p))
 					p++;
 			}
 
-			if (*p == '.') /* The Precision field usually specifies a maximum limit on the output, depending on the particular formatting type. */
+			/* The Precision field usually specifies a maximum limit on the output, depending on the particular formatting type. */
+			/* For the string type, it limits the number of characters that should be output, after which the string is truncated. */
+			/* For floating point numeric types, it specifies the number of digits to the right of the decimal point that the output should be rounded. */
+			if (*p == '.') 
 			{
-				printf("\nPrecision found.\n");
 				p++;
-
 				if (*p == '*') /* Precision is dynamic value passed as another argument. */
 				{
-					printf("\nPrint passed argument.\n");
+					printf("\nprecision = %d\n", va_arg(ap, int));
 					p++;
 				}
 				else
 				{
-					printf("\nUse ft_itoa to handel precision number.\n");
+					// printf("\nUse ft_itoa to handel precision number.\n");
+					/* het is het character 1. */
+					// hier moet ik aangeven wat de precision is om late rweer te gebruiken.
+
+					printf("\nprecision = %d\n", atoi(p));
+
 					while (isdigit(*p))
 						p++;
 				}
@@ -188,9 +193,7 @@ void strprintf(char *fmt, ...)
 			
 			/* Hier zijn alle conversion characters gecheckt en komt er een s (of d of i of x etc.). */
 			if (*p == 's')
-			{
-				fputs(va_arg(ap, char *), stdout); /* Print unnamed argument */
-			}
+				printf("%s", va_arg(ap, char *));
 		}
 		p++;
 	}

@@ -2,14 +2,10 @@
 
 int main (void)
 {
-	char *s = "world";
 	char *s1 = "world";
 	char *s2 = "Kawish";
-	// printf(":hello, %s:", s);
-	// printf("\n");
-	// strprintf(":hello, %s:", s);
-	printf("Hello,_%s._My_name_is %s.", s1, s2);
+	printf(":%.10s:", "hello, world");
 	printf("\n");
-	strprintf("Hello,_%s._My_name_is %s.", s1, s2);
+	strprintf(":%.10s:", "hello, world");
 	return (0);
 }
