@@ -7,7 +7,7 @@
 ** ordinary characters, which are copied to the output stream, [Dit is één functie.]
 ** and conversion specifications, each of which cause conversion and printing of the next succesive argument to printf. [Dit is één functie.]
 ** Each conversion specification begins with a % and ends with a conversion character. [Zo kan je filteren op een conversion specification.]
-** 
+** if the 0 and - flags both appear, the 0 flag is ignored.
 */
 
 void test_va(char *fmt, ...)
@@ -128,16 +128,54 @@ void strprintf_BU(char *fmt, ...)
 	va_end(ap); /* clean up als ie klaar is */
 }
 
+
+/* 
+** set_field: met deze functie kan je de waardes "setten" van een field in de struct fields. 
+*/
+void set_field(int *field, int x)
+{
+	*field = x;
+}
+
+/*
+** print_fields: print de staat van de struct fields voor debugging
+*/
+void print_fields(struct fields *f)
+{
+	printf("\nf.is_minus = %d\n", f->is_minus);
+	printf("f.is_zeroed = %d\n", f->is_zeroed);
+}
+
+/* 
+** init_fields: initialiseerd de struct fields met begin waarden
+*/
+struct fields init_fields(void)
+{
+	struct fields temp;
+
+	temp.is_minus = -1;
+	temp.is_zeroed = -1;
+	return (temp);
+}
+
 void strprintf(char *fmt, ...)
 // Hello,_%s._My_name_is_%s.
 {
 	va_list ap; /* Verwijst naar alle unnamed arguments. */
 	char *p;
 	char *sval;
+	struct fields f;
+	int i;
 
 	va_start(ap, fmt); /* Laat ap verwijzen naar de eerste unnamed argument. */
 
 	p = fmt;
+
+	f = init_fields();
+	print_fields(&f);
+	// set_field(&f.is_minus, 28);
+	// print_fields(&f);
+
 	while (*p)
 	{
 		if (*p != '%') /* Handeld ordinary characters. */
@@ -150,19 +188,25 @@ void strprintf(char *fmt, ...)
 
 			if (*p == '-') /* Left-align the output of this placeholder. (The default is to right-align the output.) */
 			{
-				printf("\nis_left_align = TRUE\n");
+				printf("\nis_minus = TRUE\n");
+				f.is_minus = 1;
+				print_fields(&f);
 				p++;
 			}
 
 			if (*p == '0') /* When the 'width' option is specified, prepends zeros for numeric types. (The default prepends spaces.) */
 			{
 				printf("\nis_zeroed = TRUE\n");
+				f.is_zeroed = 1;
+				print_fields(&f);
 				p++;
 			}
 
-			if (isdigit(*p)) /* The Width field specifies a minimum number of characters to output, */
+			// je wilt eigenlijk atoi gebruiken om door te loopen
+			if (ft_is_nonzerodigit(*p)) /* The Width field specifies a minimum number of characters to output, */
 			{
-				printf("\nwidth = %d\n", atoi(p));
+				i = atoi(p);
+				printf("\nwidth = %d\n", i);
 				while (isdigit(*p))
 					p++;
 			}
