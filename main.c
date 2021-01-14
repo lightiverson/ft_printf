@@ -2,11 +2,12 @@
 
 int main (void)
 {
-	char *s1 = "world";
-	char *s2 = "Kawish";
-	// printf("%--4X",3);
-	// printf("\n");
-	// strprintf(":%-.10s:", "hello, world");
-	strprintf("%04X",3);
+	// Check zero flag, and width of 4, with int.
+	// printf("%04X",3);
+	// ft_printf("%04X",3);
+
+	// Check precision of 3.
+	printf("%.3s", "abcdef");
+	ft_printf("%.3s", "abcdef");
 	return (0);
 }

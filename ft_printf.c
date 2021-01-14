@@ -10,24 +10,6 @@
 ** if the 0 and - flags both appear, the 0 flag is ignored.
 */
 
-void test_va(char *fmt, ...)
-/* eigen printf functie die alleen werkt met strings */
-/* char *fmt is het hele eerste argument */
-{
-	printf("fmt = %s\n", fmt);
-
-	/* The type va_list is used to declare a variable that will refer to each argument in turn; in minprintf, this variable is called ap, for “argument pointer. */
-	va_list ap; /* verwijst naar iedere unnamed arg na elke keer */
-	char *p;
-	char *sval;
-
-	va_start(ap, fmt); /* laat ap verwijzen naar de eerste unnamed arg */
-	sval = va_arg(ap, char *);
-	printf("sval = :%s:\n", sval);
-
-	va_end(ap); /* clean up als ie klaar is */
-}
-
 /* minprintf: minimale versie van printf met variable argument list */
 void minprintf(char *fmt, ...)
 {
@@ -100,81 +82,40 @@ void mijnfunctie(char *fmt, ...)
 	va_end(ap); /* clean up als ie klaar is */
 }
 
-void strprintf_BU(char *fmt, ...)
-// Hello,_%s
-{
-	va_list ap; /* Verwijst naar alle unnamed arguments. */
-	char *p;
-	char *sval;
-
-	va_start(ap, fmt); /* Laat ap verwijzen naar de eerste unnamed argument. */
-
-	p = fmt;
-	while (*p)
-	{
-		if (*p != '%') { /* Handeld ordinary characters. */
-			putchar(*p);
-		}
-		// else if (*++p == 's') /* Huidige character is een %, en de character daarnaast is een s. */
-		// {
-		// 	fputs(va_arg(ap, char *), stdout);
-		// }
-		else /* huidige character is een percentage */
-		{
-			putchar(*++p);
-		}
-		p++;
-	}
-	va_end(ap); /* clean up als ie klaar is */
-}
-
-
-/* 
-** set_field: met deze functie kan je de waardes "setten" van een field in de struct fields. 
-*/
-void set_field(int *field, int x)
-{
-	*field = x;
-}
-
 /*
 ** print_fields: print de staat van de struct fields voor debugging
 */
 void print_fields(struct fields *f)
 {
-	printf("\nf.is_minus = %d\n", f->is_minus);
+	printf("f.is_minus = %d\n", f->is_minus);
 	printf("f.is_zeroed = %d\n", f->is_zeroed);
+	printf("f.width = %d\n", f->width);
+	printf("f.precision = %d\n", f->precision);
 }
 
 /* 
 ** init_fields: initialiseerd de struct fields met begin waarden
 */
-struct fields init_fields(void)
+void init_fields(struct fields *fp)
 {
-	struct fields temp;
-
-	temp.is_minus = -1;
-	temp.is_zeroed = -1;
-	return (temp);
+	printf("init_fields()\n");
+	fp->is_minus = -1;
+	fp->is_zeroed = -1;
+	fp->width = -1;
+	fp->precision = -1;
 }
 
-void strprintf(char *fmt, ...)
-// Hello,_%s._My_name_is_%s.
+/*
+** set_fields: itereert door format placeholder, geeft een waarde een elke corresponderende member van de fields struct
+*/
+int set_fields(const char *fmt, va_list ap, struct fields *fp)
 {
-	va_list ap; /* Verwijst naar alle unnamed arguments. */
-	char *p;
-	char *sval;
-	struct fields f;
+	const char *p; /* Extra pointer om fmt vast te houden aan het begin van de string */
 	int i;
 
-	va_start(ap, fmt); /* Laat ap verwijzen naar de eerste unnamed argument. */
-
 	p = fmt;
-
-	f = init_fields();
-	print_fields(&f);
-	// set_field(&f.is_minus, 28);
-	// print_fields(&f);
+	init_fields(fp);
+	print_fields(fp);
 
 	while (*p)
 	{
@@ -189,24 +130,33 @@ void strprintf(char *fmt, ...)
 			if (*p == '-') /* Left-align the output of this placeholder. (The default is to right-align the output.) */
 			{
 				printf("\nis_minus = TRUE\n");
-				f.is_minus = 1;
-				print_fields(&f);
+				fp->is_minus = 1;
+				print_fields(fp);
 				p++;
 			}
 
 			if (*p == '0') /* When the 'width' option is specified, prepends zeros for numeric types. (The default prepends spaces.) */
 			{
 				printf("\nis_zeroed = TRUE\n");
-				f.is_zeroed = 1;
-				print_fields(&f);
+				fp->is_zeroed = 1;
+				print_fields(fp);
 				p++;
 			}
 
-			// je wilt eigenlijk atoi gebruiken om door te loopen
 			if (ft_is_nonzerodigit(*p)) /* The Width field specifies a minimum number of characters to output, */
 			{
+				if (*p == '-')
+				{
+					printf("\nwidth is a negative number. So is_minus = TRUE\n");
+					fp->is_minus = 1;
+					print_fields(fp);
+					p++;
+				}
+				
 				i = atoi(p);
 				printf("\nwidth = %d\n", i);
+				fp->width = i;
+				print_fields(fp);
 				while (isdigit(*p))
 					p++;
 			}
@@ -219,16 +169,22 @@ void strprintf(char *fmt, ...)
 				p++;
 				if (*p == '*') /* Precision is dynamic value passed as another argument. */
 				{
-					printf("\nprecision = %d\n", va_arg(ap, int));
+					i = va_arg(ap, int);
+					printf("\nprecision = %d\n", i);
+					fp->precision = i;
+					print_fields(fp);
 					p++;
 				}
 				else
 				{
 					// printf("\nUse ft_itoa to handel precision number.\n");
 					/* het is het character 1. */
-					// hier moet ik aangeven wat de precision is om late rweer te gebruiken.
+					// hier moet ik aangeven wat de precision is om later weer te gebruiken.
 
-					printf("\nprecision = %d\n", atoi(p));
+					i = atoi(p);
+					printf("\nprecision = %d\n", i);
+					fp->precision = i;
+					print_fields(fp);
 
 					while (isdigit(*p))
 						p++;
@@ -241,5 +197,17 @@ void strprintf(char *fmt, ...)
 		}
 		p++;
 	}
+	return (0);
+}
+
+int ft_printf(const char *fmt, ...)
+{
+	va_list ap; /* arguments pointer */
+	struct fields f;
+	int ret;
+
+	va_start(ap, fmt); /* Laat ap verwijzen naar de eerste unnamed argument */
+	ret = set_fields(fmt, ap, &f);
 	va_end(ap); /* clean up als ie klaar is */
+	return (ret);
 }

@@ -6,7 +6,7 @@
 /*   By: kawish <kawish@student.codam.nl>             +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2021/01/09 10:17:02 by kawish        #+#    #+#                 */
-/*   Updated: 2021/01/12 14:46:03 by kawish        ########   odam.nl         */
+/*   Updated: 2021/01/14 21:23:34 by kawish        ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,6 +16,8 @@
 struct fields {
 	int is_minus;
 	int is_zeroed;
+	int width;
+	int precision;
 };
 
 # include "../libft/libft.h"
@@ -25,7 +27,8 @@ struct fields {
 # include <stdlib.h>
 # include <ctype.h>
 
-void strprintf(char *fmt, ...);
+void	strprintf(char *fmt, ...);
 int		ft_is_nonzerodigit(int c);
+int ft_printf(const char *fmt, ...);
 
 # endif
