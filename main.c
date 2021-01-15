@@ -8,6 +8,7 @@ int main (void)
 
 	// Check precision of 3.
 	printf("%.3s", "abcdef");
+	printf("\n");
 	ft_printf("%.3s", "abcdef");
 	return (0);
 }
