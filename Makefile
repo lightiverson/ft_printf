@@ -6,27 +6,34 @@
 #    By: kawish <kawish@student.codam.nl>             +#+                      #
 #                                                    +#+                       #
 #    Created: 2021/01/09 09:52:36 by kawish        #+#    #+#                  #
-#    Updated: 2021/01/09 14:24:56 by kawish        ########   odam.nl          #
+#    Updated: 2021/01/22 17:06:48 by kawish        ########   odam.nl          #
 #                                                                              #
 # **************************************************************************** #
 
-NAME = ft_printf
-OBJ_FILES = main.o ft_printf.o
-HEADER_FILES = ft_printf.h
+NAME = libftprintf.a
+OBJ_FILES = ft_printf.o utils.o
+HEADER_FILE = ft_printf.h
 CFLAGS = -Wall -Wextra -Werror
+LIBFT = libft/libft.a
 
 all: $(NAME)
 
-$(NAME): $(OBJ_FILES)
-	$(CC) -o $@ $^
+$(NAME): $(LIBFT) $(OBJ_FILES)
+	cp $< $@
+	ar -crs $@ $(OBJ_FILES)
 
-%.o: %.c $(HEADER_FILES)
+%.o: %.c $(HEADER_FILE)
 	$(CC) -c $(CFLAGS) -o $@ $<
 
+$(LIBFT):
+	make -C libft
+
 clean:
+	make fclean -C libft
 	rm -f $(OBJ_FILES)
 
 fclean: clean
+	rm -f $(LIBFT)
 	rm -f $(NAME)
 
 re: fclean all

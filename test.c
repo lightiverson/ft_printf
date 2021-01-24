@@ -20,6 +20,10 @@ int main (void)
 	// printf(":%3s:\n", "abcdef");
 	// ft_printf(":%3s:\n", "abcdef");
 
+	/* grotere width, is_minus */
+	// printf(":%-10s:\n", "abcdef");
+	// ft_printf(":%-10s:\n", "abcdef");	
+
 	/* grotere precision */
 	// printf(":%.10s:\n", "abcdef");
 	// ft_printf(":%.10s:\n", "abcdef");
@@ -62,41 +66,8 @@ int main (void)
 	// printf(":%3.10s:\n", "abcdef");
 	// ft_printf(":%3.10s:\n", "abcdef");	
 
-
-
-
-	/* zeroed, width = 4, int */
-	// printf("%04X\n",3);
-	// ft_printf("%04X",3);
-
-
-
-
-	/* precison = -1, string */
-	// printf(":%.-1s:\n", "abcdef");
-	// ft_printf(":%s:\n", "abcdef");
-
-	/* precison = 0, string */
-	// printf(":%.10s:\n", "abcdef");
-	// ft_printf(":.10%s:\n", "abcdef");
-
-	// precison = 20, string
-	// printf(":%.20s:\n", "abcdef");
-	// ft_printf(":%.20s:\n", "abcdef");	
-
-
-	// zeroed, width = 4, int
-	// printf("%04X\n",3);
-	// ft_printf("%04X",3);
-
-
-
-
-
-	// zeroed, minus, width = 4, int
-	// printf("%0-4X\n",3);
-	// ft_printf("%0-4X",3);
-
+	printf("hello, %s.\n", NULL);
+	ft_printf("hello, %s.\n", NULL);
 
 	return (0);
 }

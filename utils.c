@@ -10,3 +10,16 @@ int		ft_is_nonzerodigit(int c)
 	else
 		return (0);
 }
+
+/*
+** print_fields: print de staat van de struct fields voor debugging
+*/
+void print_fields(struct fields *f)
+{
+	printf("\nprint_fields()\n");
+	printf("f.is_minus = %d\n", f->is_minus);
+	printf("f.is_zeroed = %d\n", f->is_zeroed);
+	printf("f.width = %d\n", f->width);
+	printf("f.precision = %d\n", f->precision);
+	printf("f.conv_char = %c\n", f->conv_char);
+}

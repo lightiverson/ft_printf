@@ -6,7 +6,7 @@
 /*   By: kawish <kawish@student.codam.nl>             +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2021/01/09 10:17:02 by kawish        #+#    #+#                 */
-/*   Updated: 2021/01/19 17:47:49 by kawish        ########   odam.nl         */
+/*   Updated: 2021/01/21 17:18:24 by kawish        ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,5 +32,6 @@ void	strprintf(char *fmt, ...);
 int		ft_is_nonzerodigit(int c);
 int		ft_printf(const char *fmt, ...);
 void	ft_putstr_fd(char *s, int fd);
+void print_fields(struct fields *f);
 
 # endif
