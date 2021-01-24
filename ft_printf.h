@@ -6,20 +6,12 @@
 /*   By: kawish <kawish@student.codam.nl>             +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2021/01/09 10:17:02 by kawish        #+#    #+#                 */
-/*   Updated: 2021/01/21 17:18:24 by kawish        ########   odam.nl         */
+/*   Updated: 2021/01/24 14:32:12 by kawish        ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef FT_PRINTF_H
 # define FT_PRINTF_H
-
-struct fields {
-	int is_minus;
-	int is_zeroed;
-	int width;
-	int precision;
-	char conv_char;
-};
 
 # include "../libft/libft.h"
 # include <stdio.h>
@@ -28,10 +20,27 @@ struct fields {
 # include <stdlib.h>
 # include <ctype.h>
 
-void	strprintf(char *fmt, ...);
-int		ft_is_nonzerodigit(int c);
-int		ft_printf(const char *fmt, ...);
-void	ft_putstr_fd(char *s, int fd);
-void print_fields(struct fields *f);
+/*
+** struct
+*/
+struct		fields
+{
+	int		is_minus;
+	int		is_zeroed;
+	int		width;
+	int		precision;
+	char	conv_char;
+};
+
+/*
+** ft_printf prototype
+*/
+int			ft_printf(const char *fmt, ...);
+
+
+void		strprintf(char *fmt, ...);
+int			ft_is_nonzerodigit(int c);
+void		ft_putstr_fd(char *s, int fd);
+void		print_fields(struct fields *f);
 
 # endif

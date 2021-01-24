@@ -1,3 +1,15 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        ::::::::            */
+/*   ft_printf.c                                        :+:    :+:            */
+/*                                                     +:+                    */
+/*   By: kawish <kawish@student.codam.nl>             +#+                     */
+/*                                                   +#+                      */
+/*   Created: 2021/01/24 14:35:22 by kawish        #+#    #+#                 */
+/*   Updated: 2021/01/24 15:09:12 by kawish        ########   odam.nl         */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "ft_printf.h"
 
 /*
@@ -12,10 +24,11 @@
 ** %[parameter][flags][width][.precision][length]type
 */
 
-/* 
-** init_fields: initialiseerd de struct fields met begin waarden
+/*
+** init_fields: intializes struct fields
 */
-void init_fields(struct fields *fp)
+
+void		init_fields(struct fields *fp)
 {
 	fp->is_minus = 0;
 	fp->is_zeroed = 0;
@@ -25,52 +38,56 @@ void init_fields(struct fields *fp)
 }
 
 /*
-** set_fields: itereert door format placeholder, geeft een waarde een elke corresponderende member van de fields struct
+** set_fields: iterates through the format placeholder and edits the members of the fields struct accordingly.
+** Takes as arguments pointer p to the position in the format placeholder string. The list of unnamed arguments ap. And pointer to the fields struct fp.
+** Returns a pointer p to a position in string fmt at the format specifier .
+** 
+** int i: holds the precision value from the struct.
+** first the code checks for - or 0.
+** then the code checks for the width field.
+** then the precision field.
+** then the conversion character.
+** then any incombatibilities between precies fields.
+** 
+** The Precision field usually specifies a maximum limit on the output, depending on the particular formatting type.
+** For the string type, it limits the number of characters that should be output, after which the string is truncated.
+** For floating point numeric types, it specifies the number of digits to the right of the decimal point that the output should be rounded.
 */
-const char * set_fields(const char *p, va_list ap, struct fields *fp)
+
+const char	*set_fields(const char *p, va_list ap, struct fields *fp)
 {
+	int	i;
+	
 	// printf("\nset_fields()\n");
 
-	int i;
-
-	p++; /* Zet p een character na % */
+	p++;
 
 	while (*p == '-' || *p == '0')
 	{
-		if (*p == '-') /* Left-align the output of this placeholder. (The default is to right-align the output.) */
-		{
+		if (*p == '-')
 			fp->is_minus = 1;
-		}
-		if (*p == '0') /* When the 'width' option is specified, prepends zeros for numeric types. (The default prepends spaces.) */
-		{
+		if (*p == '0')
 			fp->is_zeroed = 1;
-		}
 		p++;
 	}
-
-	if (ft_is_nonzerodigit(*p)) /* The Width field specifies a minimum number of characters to output, */
+	if (ft_is_nonzerodigit(*p))
 	{
 		if (*p == '-')
 		{
 			fp->is_minus = 1;
 			p++;
 		}
-		i = atoi(p);
-		fp->width = i;
+		fp->width = atoi(p);
 		while (isdigit(*p))
 			p++;
 	}
-
-	/* The Precision field usually specifies a maximum limit on the output, depending on the particular formatting type. */
-	/* For the string type, it limits the number of characters that should be output, after which the string is truncated. */
-	/* For floating point numeric types, it specifies the number of digits to the right of the decimal point that the output should be rounded. */
 	if (*p == '.') 
 	{
 		p++;
-		if (*p == '*') /* Precision is dynamic value passed as another argument. */
+		if (*p == '*')
 		{
 			i = va_arg(ap, int);
-			if (i >= 0) /* als de precision 0 of hoger is, set precision, anders blijf -1 */
+			if (i >= 0)
 				fp->precision = i;
 			p++;
 		}
@@ -79,117 +96,73 @@ const char * set_fields(const char *p, va_list ap, struct fields *fp)
 			if (*p == '-')
 				p++;
 			else
-			{
-				i = atoi(p);
-				fp->precision = i;
-			}
+				fp->precision = atoi(p);
 			while (isdigit(*p))
 				p++;
 		}
 	}
-	/* Hier zijn alle conversion characters gecheckt en komt er een s (of d of i of x etc.). */
-	/* signed decimal specifier character */
 	fp->conv_char = *p;
-
-	if (fp->is_zeroed && fp->is_minus) /* if the 0 and - flags both appear, the 0 flag is ignored. */
+	if (fp->is_zeroed && fp->is_minus)
 	{
 		// printf("fp->is_zeroed AND fp->is_minus are TRUE\n");
 		fp->is_zeroed = 0;
 	}
-
-	// if a precision is given with a numeric conversion, the 0 flag is ignored.
-	
+	/* if a precision is given with a numeric conversion, the 0 flag is ignored. */
 	// print_fields(fp);
 	return (p);
 }
 
-// /* kijk of je overal ca_dup kan gebruiken ipv ca */
-void get_format_string_back_up(struct fields *fp, char *ca)
+/*
+** get_format_string: writes formatted version of current argument string ca to stdout.
+** Takes as arguments pointer to the struct, and the the current argument string ca.
+** Returns nothing as of now. Should return the number of characters written to stdout.
+** 
+** char ca_dup[strlen(ca) + 1]: is a duplicate of current argument. Created so that we can truncate the string by changing a character to '\0'.
+** int ca_dup_len: is the length of the duplicate of current argument.
+** int i, j: are counter variables.
+** char c: the padding character.
+*/
+
+void		get_format_string(struct fields *fp, char *ca)
 {
-	// printf("\nget_format_string()\n");
-
-	char s[(fp->width + (strlen(ca) + 1))]; // 17
-	char ca_dup[strlen(ca) + 1];
-	int ca_dup_len;
-	
-	strlcpy(ca_dup, ca, sizeof(ca_dup));
-	ca_dup_len = strlen(ca_dup);
-
-	if (fp->is_zeroed) /* als fp->is_zeroed true is */
-		memset(s, '0', sizeof(s));
-	else
-		memset(s, ' ', sizeof(s));
-
-	/*
-	** Als precision 0 of groter is EN kleiner dan ca_dup_len
-	** dan moet er getruncate worden?
-	*/	
-	if (((fp->precision >= 0) && (fp->precision < ca_dup_len)))
-	{
-		// printf("fp->precision is 0 of groter EN kleiner dan ca_dup_len\n");
-
-		ca_dup[fp->precision] = '\0'; /* truncate zn moer */
-		ca_dup_len = strlen(ca_dup); /* zet ca_dup_len gelijk aan de nieuwe lengte van ca_dup vanwege truncation door kleine precision */
-	}
-
-	if (fp->width > ca_dup_len) /* als de width groter is dan de lengte van ca */
-	{ 
-		// printf("fp->width is groter dan ca_dup_len\n");
-
-		s[fp->width] = '\0'; /* dan moet s, fp->width + 1 lang zijn */
-
-		if (fp->is_minus) 
-			strncpy(s, ca_dup, ca_dup_len); /* moet abcdef aan het begin van s */
-		else 
-			strncpy(s+(fp->width - ca_dup_len), ca_dup, ca_dup_len); /* moet abcdef aan het eind van s */
-	}
-	else
-		strlcpy(s, ca_dup, sizeof(s));
-		ft_putstr_fd(s, 1);
-}
-
-void get_format_string(struct fields *fp, char *ca)
-{
-	char ca_dup[strlen(ca) + 1];
-	int ca_dup_len;
-	int i;
-	char c;
+	char			ca_dup[strlen(ca) + 1];
+	int				ca_dup_len;
+	int				i;
+	int				j;
+	char			c;
 
 	strlcpy(ca_dup, ca, sizeof(ca_dup));
 	ca_dup_len = strlen(ca_dup); // 6
 	i = 0;
+	j = 0;
 	c = ' ';
 
 	if (fp->is_zeroed)
 		c = '0';
-
 	if (((fp->precision >= 0) && (fp->precision < ca_dup_len)))
 	{
-		ca_dup[fp->precision] = '\0'; /* truncate zn moer */
-		ca_dup_len = strlen(ca_dup); /* zet ca_dup_len gelijk aan de nieuwe lengte van ca_dup vanwege truncation door kleine precision */
+		ca_dup[fp->precision] = '\0';
+		ca_dup_len = strlen(ca_dup);
 	}
-
-	if (ca_dup_len < fp->width) // als len van je argument kleiner is dan width, word width padded
+	if (ca_dup_len < fp->width)
 	{
-		if (!fp->is_minus) // right aligned
+		if (!fp->is_minus)
 		{
 			while (i < (fp->width - ca_dup_len))
 			{
 				write(1, &c, 1);
 				i++;
 			}
-			i = 0;
 			ft_putstr_fd(ca_dup, 1);
 		}
 		else
 		{
 			ft_putstr_fd(ca_dup, 1);
-			while (i < (fp->width - ca_dup_len))
+			while (j < (fp->width - ca_dup_len))
 			{
 				write(1, &c, 1);
-				i++;
+				j++;
 			}
-			i = 0;
 		}
 	}
 	else
@@ -200,15 +173,19 @@ void get_format_string(struct fields *fp, char *ca)
 ** iterate_fmt: loops over the string fmt per character. Any character that is not % gets written to terminal. If a character equals % set_fields() is called. And then get_format_string is called.
 ** Takes as arguments string fmt, list of unnamend arguments, and a pointer to the struct declared in ft_printf.
 ** Returns the number of characters written to terminal.
-** p: pointer to fmt as to not lose the original pointer to fmt.
-** ca: ca stands for current argument. Pointer to the current argument in va_list ap.
+** 
+** const char p: pointer to fmt as to not lose the original pointer to fmt.
+** char *ca; ca stands for current argument. Pointer to the current argument in va_list ap.
 ** if (*p != '%'): handles ordinary characters. Else handles percentage and characters following until format specifier.
+** in the else block, set_fields() is called and returns a pointer p to a position in string fmt at the format specifier.
+** in the else block, get_format_string() is called and writes the formatted string to stdout.
 */
-int	interate_fmt(const char *fmt, va_list ap, struct fields *fp)
+
+int			interate_fmt(const char *fmt, va_list ap, struct fields *fp)
 {
 	// printf("\niterate_fmt()\n");
-	const char	*p;
-	char		*ca;
+	const char		*p;
+	char			*ca;
 
 	p = fmt;
 	init_fields(fp);
@@ -220,15 +197,12 @@ int	interate_fmt(const char *fmt, va_list ap, struct fields *fp)
 			write(1, p, 1);
 		else
 		{
-			/* Zolang de eerstvolgende character geen conversion character is, handel elke flag? */
 			p = set_fields(p, ap, fp);
-
-			// va_copy(v, ap);
 			ca = va_arg(ap, char*);
 			if (ca == NULL)
-				get_format_string(fp, "(null)"); /* zet hier de function call die de fields struct leest en var arg accordingely aanpast */
+				get_format_string(fp, "(null)");
 			else
-				get_format_string(fp, ca); /* zet hier de function call die de fields struct leest en var arg accordingely aanpast */
+				get_format_string(fp, ca);
 		}
 		p++;
 	}
@@ -244,7 +218,8 @@ int	interate_fmt(const char *fmt, va_list ap, struct fields *fp)
 ** struct fields f: fields describes all the conversion fields variables. For example flags, width specifier.
 ** int ret: stands for return. Keeps track of the number of characters written, and returns this value as last step.
 */
-int	ft_printf(const char *fmt, ...)
+
+int			ft_printf(const char *fmt, ...)
 {
 	// printf("\nft_// printf()\n");
 	va_list			ap;
