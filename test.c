@@ -64,63 +64,80 @@ int main (void)
 	// printf("Your age is :%d:\n", 28);
 	// ft_printf("Your age is :%d:\n", 28);
 
-	/* width = 4, int */
+	/* width = 4 */
 	// printf("Your age is :%4d:\n", 28);
 	// ft_printf("Your age is :%4d:\n", 28);
 
-	/* width = 4, right aligned, int */
+	/* width = 4, right aligned */
 	// printf("Your age is :%-4d:\n", 28);
 	// ft_printf("Your age is :%-4d:\n", 28);
 
-	/* precision = *, int */
+	/* precision = * */
 	// printf("Your age is :%.d:\n", 28);
-	// printf("Your age is :%.0d:\n", 28);
-	// printf("Your age is :%.1d:\n", 28);
-	// printf("Your age is :%.2d:\n", 28);
-	// printf("Your age is :%.3d:\n", 28);
-	// printf("Your age is :%.4d:\n", 28);
-	// printf("Your age is :%.5d:\n", 28);
-
 	// ft_printf("Your age is :%.d:\n", 28);
+
+	// printf("Your age is :%.0d:\n", 28);
 	// ft_printf("Your age is :%.0d:\n", 28);
+
+	// printf("Your age is :%.1d:\n", 28);
 	// ft_printf("Your age is :%.1d:\n", 28);
+
+	// printf("Your age is :%.2d:\n", 28);
 	// ft_printf("Your age is :%.2d:\n", 28);
+
+	// printf("Your age is :%.3d:\n", 28);
 	// ft_printf("Your age is :%.3d:\n", 28);
+
+	// printf("Your age is :%.4d:\n", 28);
 	// ft_printf("Your age is :%.4d:\n", 28);
+
+	// printf("Your age is :%.5d:\n", 28);
 	// ft_printf("Your age is :%.5d:\n", 28);
-	
-	// printf("Your age is :%4d:\n", 28);
-	// ft_printf("Your age is :%4d:\n", 28);
-	// printf("Your age is :%-4d:\n", 28);
-	// ft_printf("Your age is :%-4d:\n", 28);
-	// printf("Your age is :%10.4d:\n", -28);
-	// ft_printf("Your age is :%10.4d:\n", -28);
+
+	/* NEGATIVE NUMBERS */
+
+	/* %d */
+	// printf("Your age is :%d:\n", -28);
+	// ft_printf("Your age is :%d:\n", -28);
+
+	/* width = 4 */
+	// printf("Your age is :%4d:\n", -28);
+	// ft_printf("Your age is :%4d:\n", -28);
+
+	/* width = 4, right aligned */
+	// printf("Your age is :%-4d:\n", -28);
+	// ft_printf("Your age is :%-4d:\n", -28);
+
+	/* width = 4, zeroed */
+	printf(":%5d:\n", -28);
+	ft_printf(":%5d:\n", -28);
 
 	// width = 7, is_zero, precision = 5, negative number
 	// printf(":%7.4d:\n", -54);
+	// ft_printf(":%7.4d:\n", -54);
 	// printf(":%07.4d:\n", -54);
-	// printf(":%7d:\n", 54);
-	// printf(":%07d:\n", 54);
+	// printf(":%07.4d:\n", -54);
+
 	// ft_printf(":%07d:\n", 54);
-	// ft_printf(":%07d:\n", -54);
+	// ft_printf(":%07d:\n", 54);
 
-	printf(":%.d:\n", 54);
-	ft_printf(":%.d:\n", 54);
+	// printf(":%.d:\n", 54);
+	// ft_printf(":%.d:\n", 54);
 
-	printf(":%.1d:\n", 54);
-	ft_printf(":%.1d:\n", 54);
+	// printf(":%.1d:\n", 54);
+	// ft_printf(":%.1d:\n", 54);
 
-	printf(":%.4d:\n", 54);
-	ft_printf(":%.4d:\n", 54);
+	// printf(":%.4d:\n", 54);
+	// ft_printf(":%.4d:\n", 54);
 
-	printf(":%.d:\n", -54);
-	ft_printf(":%.d:\n", -54);
+	// printf(":%.d:\n", -54);
+	// ft_printf(":%.d:\n", -54);
 
-	printf(":%.1d:\n", -54);
-	ft_printf(":%.1d:\n", -54);
+	// printf(":%.1d:\n", -54);
+	// ft_printf(":%.1d:\n", -54);
 
-	printf(":%.4d:\n", -54);
-	ft_printf(":%.4d:\n", -54);
+	// printf(":%.4d:\n", -54);
+	// ft_printf(":%.4d:\n", -54);
 
 	return (0);
 }
