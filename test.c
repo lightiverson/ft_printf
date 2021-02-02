@@ -104,25 +104,22 @@ int main (void)
 	// ft_printf(":%07d:\n", 54);
 	// ft_printf(":%07d:\n", -54);
 
-	// printf(":%.d:\n", 54);
-	// ft_printf(":%.d:\n", 54);
+	printf(":%.d:\n", 54);
+	ft_printf(":%.d:\n", 54);
 
-	// printf(":%.1d:\n", 54);
-	// ft_printf(":%.1d:\n", 54);
+	printf(":%.1d:\n", 54);
+	ft_printf(":%.1d:\n", 54);
 
-	// printf(":%.4d:\n", 54);
-	// ft_printf(":%.4d:\n", 54);
+	printf(":%.4d:\n", 54);
+	ft_printf(":%.4d:\n", 54);
 
-	// printf(":%.d:\n", -54);
-	// ft_printf(":%.d:\n", -54);
+	printf(":%.d:\n", -54);
+	ft_printf(":%.d:\n", -54);
 
-	// printf(":%.1d:\n", -54);
-	// ft_printf(":%.1d:\n", -54);
+	printf(":%.1d:\n", -54);
+	ft_printf(":%.1d:\n", -54);
 
-	// printf(":%.4d:\n", -54);
-	// ft_printf(":%.4d:\n", -54);
-
-	printf(":%08.4d:\n", -54);
+	printf(":%.4d:\n", -54);
 	ft_printf(":%.4d:\n", -54);
 
 	return (0);

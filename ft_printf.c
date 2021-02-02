@@ -6,7 +6,7 @@
 /*   By: kawish <kawish@student.codam.nl>             +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2021/01/24 14:35:22 by kawish        #+#    #+#                 */
-/*   Updated: 2021/01/31 18:02:06 by kawish        ########   odam.nl         */
+/*   Updated: 2021/01/31 20:18:39 by kawish        ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -196,10 +196,6 @@ int			int_len(int n)
 	return (c);
 }
 
-/*
-** 
-*/
-
 void		back_up_format_d(struct fields *fp, int dval)
 {
 	// "xxxxx-0028" width = 10, precision = 4
@@ -265,11 +261,7 @@ void		back_up_format_d(struct fields *fp, int dval)
 	}
 }
 
-/*
-** 
-*/
-
-void		backup_format_d(struct fields *fp, int dval)
+void		back_up_precision_d(struct fields *fp, int dval)
 {
 	char *digits;
 	char *answer;
@@ -317,7 +309,7 @@ void		backup_format_d(struct fields *fp, int dval)
 	
 }
 
-void format_d(struct fields *fp, int dval)
+void back_up_1_precision_d(struct fields *fp, int dval)
 {
 	char *digits;
 	char *answer;
@@ -372,6 +364,134 @@ void format_d(struct fields *fp, int dval)
 		}
 		ft_putstr_fd(answer, 1);
 	}
+}
+
+void back_up_2_precision_d(struct fields *fp, int dval)
+{
+	char *digits;
+	char *answer;
+	char *answer_dup;
+	int no_of_digits;
+	int is_negative;
+	int i;
+
+	i = 0;
+	is_negative = 0;
+	digits = ft_itoa(dval);
+	// printf("digits = %s\n", digits);
+
+	if (*digits == '-')
+	{
+		is_negative = 1;
+		digits++;
+	}
+	no_of_digits = (int)strlen(digits);
+	// printf("no_of_digits = %d\n", no_of_digits);
+
+	if (fp->precision >= 0 && no_of_digits < fp->precision)
+	{
+		answer = malloc((fp->precision + no_of_digits + is_negative) * sizeof(*answer));
+		if (!answer)
+		{
+			// printf("malloc() failed!");
+			return;
+		}
+		answer_dup = answer;
+		
+		// printf("fp->precision + no_of_digits + is_negative = %d\n", (fp->precision + no_of_digits + is_negative));
+
+		if (is_negative)
+		{
+			*answer_dup = '-';
+			// printf("answer = %s\n", answer);
+
+			answer_dup++;
+		}
+		strlcpy(answer_dup, digits, fp->precision + no_of_digits + is_negative);
+		// printf("answer = %s\n", answer);
+
+		memmove( answer_dup+(fp->precision - no_of_digits), answer_dup, fp->precision - no_of_digits );
+		// printf("answer = %s\n", answer);
+
+		while (i < fp->precision - no_of_digits)
+		{
+			*answer_dup = '0';
+			answer_dup++;
+			i++;
+		}
+		ft_putstr_fd(answer, 1);
+	}
+}
+
+char* precision_d(struct fields *fp, char *a, int num_of_digits)
+{
+	char *answer;
+	char *answer_dup;
+	int i;
+
+	// printf("fp->precision + (int)strlen(a) = %d\n", fp->precision + (int)strlen(a));
+	answer = malloc((fp->precision + (int)strlen(a)) * sizeof(*answer));
+	if (!answer)
+		return NULL;
+
+	i = 0;
+	answer_dup = answer;
+
+	strlcpy(answer_dup, a, fp->precision + (int)strlen(a));
+	// printf("answer = %s\n", answer);
+
+	if (*a == '-')
+		answer_dup++;
+
+	memmove( answer_dup+(fp->precision - num_of_digits), answer_dup, fp->precision - num_of_digits );
+	// printf("answer = %s\n", answer);
+
+	while (i < fp->precision - num_of_digits)
+	{
+		*answer_dup = '0';
+		answer_dup++;
+		i++;
+	}
+	// printf("answer = %s\n", answer);
+
+	free(a);
+	return(answer);
+}
+
+int kaulo(char *s)
+{
+	int i;
+
+	i = 0;
+	while (*s)
+	{
+		while (isdigit(*s))
+		{
+			i++;
+			s++;
+		}
+		s++;
+	}
+	return (i);
+}
+
+void format_d(struct fields *fp, int dval)
+{
+	char *a;
+	int num_digits_a;
+
+	a = ft_itoa(dval);
+	if (!a)
+		return;
+
+	num_digits_a = kaulo(a);
+	// printf("num_digits_a = %d\n", num_digits_a);
+
+	if (fp->precision >= 0 && num_digits_a < fp->precision)
+	{
+		a = precision_d(fp, a, num_digits_a);
+	}
+	ft_putstr_fd(a, 1);
 }
 
 /*
