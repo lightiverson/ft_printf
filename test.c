@@ -109,8 +109,8 @@ int main (void)
 	// ft_printf("Your age is :%-4d:\n", -28);
 
 	/* width = 4, zeroed */
-	printf(":%5d:\n", -28);
-	ft_printf(":%5d:\n", -28);
+	// printf(":%05d:\n", -28);
+	// ft_printf(":%05d:\n", -28);
 
 	// width = 7, is_zero, precision = 5, negative number
 	// printf(":%7.4d:\n", -54);
@@ -138,6 +138,24 @@ int main (void)
 
 	// printf(":%.4d:\n", -54);
 	// ft_printf(":%.4d:\n", -54);
+
+	// printf(":%7d:\n", 33);
+	// ft_printf(":%7d:\n", 33);
+
+	// printf(":%-7d:\n", 33);
+	// ft_printf(":%-7d:\n", 33);
+
+	// printf(":%07d:\n", -14);
+	// ft_printf(":%07d:\n", -14);
+
+	// printf(":%7d:\n", -14);
+	// ft_printf(":%7d:\n", -14);
+
+	printf(":%8.5d:\n", 34);
+	ft_printf(":%8.5d:\n", 34);
+
+	// wat is het verschil tussen left aligned en right aligned met nullen negatief en width?
+	// printf(":%-07d", -14);
 
 	return (0);
 }

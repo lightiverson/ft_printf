@@ -6,11 +6,13 @@
 /*   By: kawish <kawish@student.codam.nl>             +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2021/01/24 14:35:22 by kawish        #+#    #+#                 */
-/*   Updated: 2021/02/02 17:22:59 by kawish        ########   odam.nl         */
+/*   Updated: 2021/02/04 18:44:01 by kawish        ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_printf.h"
+
+// STRINGLEN BIJ %D VAN PRECISION NAAR WIDTH AANPASSEN
 
 /*
 ** Printf converts, formats, and prints its arguments on the standard out under the control of the format. [Description]
@@ -216,66 +218,108 @@ int			count_digits(int n)
 	return (c);
 }
 
-char*		precision_d(struct fields *fp, char *a, int num_of_digits)
+char*		precision_d(struct fields *fp, int dval, char *a, int digits_a, int chars_a)
 {
-	char			*ret;
-	char			*ret_dup;
-	int				i;
+	char ret[fp->precision + chars_a + 1];
+	char *p_ret;
 
-	// printf("fp->precision + strlen(a) = %d\n", fp->precision + strlen(a));
-	ret = malloc((fp->precision + strlen(a)) * sizeof(*ret));
-	if (!ret)
-		return NULL;
-
-	i = 0;
-	ret_dup = ret;
-
-	strlcpy(ret_dup, a, fp->precision + strlen(a));
-	// printf("ret = %s\n", ret);
-
-	if (*a == '-')
-		ret_dup++;
-
-	memmove( ret_dup+(fp->precision - num_of_digits), ret_dup, fp->precision - num_of_digits );
-	// printf("ret = %s\n", ret);
-
-	while (i < fp->precision - num_of_digits)
+	p_ret = ret;
+	memset(ret, '0', sizeof(ret));
+	
+	if (dval < 0)
 	{
-		*ret_dup = '0';
-		ret_dup++;
-		i++;
+		*p_ret++ = '-';
+		a++;
 	}
-	// printf("ret = %s\n", ret);
 
-	free(a);
-	return(ret);
+	strlcpy(p_ret+(fp->precision - digits_a), a, strlen(p_ret) + 1);
+
+	return(ft_strdup(ret));
 }
 
-char* width_d(int chars_a, struct fields *fp, int dval, int digits_a, char *a)
+// char*		width_d(struct fields *fp, int dval, char *a, int chars_a)
+// {
+// 	char ret[fp->width + chars_a + 1];
+// 	char *p_ret;
+
+// 	p_ret = ret;
+// 	if (fp->is_zeroed)
+// 		memset(ret, '0', sizeof(ret));
+// 	else
+// 		memset(ret, ' ', sizeof(ret));
+
+// 	// je hebt een string gevult met '_' en je moet na width - chars-a beginnen met plakken
+// 	if (dval < 0 && fp->is_zeroed)
+// 	{
+// 		*p_ret++ = '-';
+// 		a++;
+// 		strlcpy(p_ret+(fp->width - chars_a), a, strlen(p_ret) + 1);
+// 	}
+// 	else
+// 	{
+// 		strlcpy(p_ret+(fp->width - chars_a), a, strlen(p_ret) + 1);
+// 	}
+
+// 	return(ft_strdup(ret));
+// }
+
+char*		width_d(struct fields *fp, int dval, char *a, int chars_a)
 {
-	char ret[fp->width + chars_a + 1]; // 5 + 3 + 1
+	// fp->width = 7
+	// chars_a = 2
+	// a = "33"
+	char ret[fp->width + chars_a + 1];
 	char *p_ret;
 	int i;
 
-	i = 0;
 	p_ret = ret;
+	i = 0;
 
-	strlcpy(ret, ft_itoa(dval), sizeof(ret));
-	printf("\nret = %s\n", ret);
-
-	if (*p_ret == '-')
-	p_ret++;
-
-	memmove(p_ret+(fp->width - chars_a), p_ret, digits_a);
-	printf("\nret = %s\n", ret);
-
-	while (i < fp->width - chars_a)
+	if (fp->is_zeroed)
 	{
-		p_ret[i] = '0';
-		i++;
+		/* vullen met nullen */
+		memset(ret, '0', sizeof(ret)); // ret = "0.000.000.000"
+	}
+	else
+	{
+		/* vullen met spaces */
+		memset(ret, ' ', sizeof(ret)); // ret = "          "
 	}
 
-	return (ret);
+	if (fp->is_minus)
+	{
+		/* 33 moet links komen */
+		// ret = "3.300.000.000"
+		memcpy(ret, a, strlen(a));
+	}
+	else
+	{
+		/* 33 moet rechts komen */
+		// ret = "0.000.033.000"
+		// alleen bij right aligned kan je met nullen padden
+
+		// if (dval < 0)
+		// {
+		// 	ret[i] = '-';
+		// 	i++;
+		// 	memcpy( &(ret[fp->width - (chars_a - i)]), &(a[i]), strlen(&(a[i])) );
+		// }
+		// else
+		// {
+		// 	memcpy(&(ret[fp->width - chars_a]), a, strlen(a));
+		// }
+
+		if (dval < 0 && fp->is_zeroed)
+		{
+			*p_ret++ = '-';
+			a++;
+		}
+		memcpy(p_ret+(fp->width - chars_a), a, strlen(a));
+	}
+
+	ret[fp->width] = '\0';
+	
+	return(ft_strdup(ret));
 }
 
 void		format_d(struct fields *fp, int dval)
@@ -300,14 +344,18 @@ void		format_d(struct fields *fp, int dval)
 	// printf("chars_a = %d\n", chars_a);
 
 	if (fp->precision >= 0 && digits_a < fp->precision)
-		a = precision_d(fp, a, digits_a);
+	{
+		// a = precision_d(fp, a, digits_a);
+		a = precision_d(fp, dval, a, digits_a, chars_a);
+		chars_a = (int)strlen(a);
+	}
 
 	// width
 	if (chars_a < fp->width) // 3 < 5
 	{
-		a = width_d(chars_a, fp, dval, digits_a, a);
+		// a = width_d(chars_a, fp, dval, digits_a, a);
+		a = width_d(fp, dval, a, chars_a);
 	}
-	
 
 	ft_putstr_fd(a, 1);
 }

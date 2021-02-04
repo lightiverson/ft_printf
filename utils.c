@@ -172,7 +172,7 @@ void		back_up_precision_d(struct fields *fp, int dval)
 	
 }
 
-void back_up_1_precision_d(struct fields *fp, int dval)
+void		back_up_1_precision_d(struct fields *fp, int dval)
 {
 	char *digits;
 	char *answer;
@@ -229,7 +229,7 @@ void back_up_1_precision_d(struct fields *fp, int dval)
 	}
 }
 
-void back_up_2_precision_d(struct fields *fp, int dval)
+void		back_up_2_precision_d(struct fields *fp, int dval)
 {
 	char *digits;
 	char *answer;
@@ -284,6 +284,100 @@ void back_up_2_precision_d(struct fields *fp, int dval)
 		}
 		ft_putstr_fd(answer, 1);
 	}
+}
+
+char*		move_precision_d(struct fields *fp, char *a, int num_of_digits)
+{
+	char			*ret;
+	char			*ret_dup;
+	int				i;
+
+	// printf("fp->precision + strlen(a) = %d\n", fp->precision + strlen(a));
+	ret = malloc((fp->precision + strlen(a)) * sizeof(*ret));
+	if (!ret)
+		return NULL;
+
+	i = 0;
+	ret_dup = ret;
+
+	strlcpy(ret_dup, a, fp->precision + strlen(a));
+	// printf("ret = %s\n", ret);
+
+	if (*a == '-')
+		ret_dup++;
+
+	memmove( ret_dup+(fp->precision - num_of_digits), ret_dup, fp->precision - num_of_digits );
+	// printf("ret = %s\n", ret);
+
+	while (i < fp->precision - num_of_digits)
+	{
+		*ret_dup = '0';
+		ret_dup++;
+		i++;
+	}
+	// printf("ret = %s\n", ret);
+
+	free(a);
+	return(ret);
+}
+
+char*		move_width_d_no_malloc(int chars_a, struct fields *fp, int dval, int digits_a)
+{
+	char ret[fp->width + chars_a + 1]; // 5 + 3 + 1
+	char *p_ret;
+	int i;
+
+	i = 0;
+	p_ret = ret;
+
+	strlcpy(ret, ft_itoa(dval), sizeof(ret));
+	printf("\nret = %s\n", ret);
+
+	if (*p_ret == '-')
+	p_ret++;
+
+	memmove(p_ret+(fp->width - chars_a), p_ret, digits_a);
+	printf("\nret = %s\n", ret);
+
+	while (i < fp->width - chars_a)
+	{
+		p_ret[i] = '0';
+		i++;
+	}
+
+	return(ft_strdup(ret));
+}
+
+char*		move_width_d_malloc(struct fields *fp, char *a, int digits_a, int chars_a)
+{
+	char *ret;
+	char *ret_dup;
+	int i;
+
+	ret = malloc((fp->width + chars_a) * sizeof(*ret));
+	if (!ret)
+		return NULL;
+
+	i = 0;
+	ret_dup = ret;
+
+	strlcpy(ret_dup, a, fp->width + chars_a);
+	printf("\nret = %s\n", ret);
+
+	if (*ret_dup == '-')
+		ret_dup++;
+
+	memmove(ret_dup+(fp->width - chars_a), ret_dup, digits_a);
+	printf("\nret = %s\n", ret);
+
+	while (i < fp->width - chars_a)
+	{
+		ret_dup[i] = '0';
+		i++;
+	}
+
+	free(a);
+	return (ret);
 }
 
 /*
