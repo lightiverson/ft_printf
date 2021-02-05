@@ -151,8 +151,11 @@ int main (void)
 	// printf(":%7d:\n", -14);
 	// ft_printf(":%7d:\n", -14);
 
-	printf(":%8.5d:\n", 34);
-	ft_printf(":%8.5d:\n", 34);
+	// printf(":%8.5d:\n", 34);
+	// ft_printf(":%8.5d:\n", 34);
+
+	printf(":%.0d:\n", 2);
+	ft_printf(":%.0d:\n", 2);
 
 	// wat is het verschil tussen left aligned en right aligned met nullen negatief en width?
 	// printf(":%-07d", -14);

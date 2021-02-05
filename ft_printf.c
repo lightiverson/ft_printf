@@ -6,7 +6,7 @@
 /*   By: kawish <kawish@student.codam.nl>             +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2021/01/24 14:35:22 by kawish        #+#    #+#                 */
-/*   Updated: 2021/02/04 18:44:01 by kawish        ########   odam.nl         */
+/*   Updated: 2021/02/04 20:49:51 by kawish        ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -336,6 +336,9 @@ void		format_d(struct fields *fp, int dval)
 	a = ft_itoa(dval);
 	if (!a)
 		return;
+	
+	// if (dval == 0)
+	// 	memset(a, '\0', strlen(a) + 1);
 
 	digits_a = count_digits(dval);
 	// printf("digits_a = %d\n", digits_a);
@@ -347,6 +350,11 @@ void		format_d(struct fields *fp, int dval)
 	{
 		// a = precision_d(fp, a, digits_a);
 		a = precision_d(fp, dval, a, digits_a, chars_a);
+		chars_a = (int)strlen(a);
+	}
+	else if (fp->precision == 0 && dval == 0)
+	{
+		memset(a, '\0', strlen(a) + 1);
 		chars_a = (int)strlen(a);
 	}
 
