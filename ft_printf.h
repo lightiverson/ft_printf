@@ -6,7 +6,7 @@
 /*   By: kawish <kawish@student.codam.nl>             +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2021/01/09 10:17:02 by kawish        #+#    #+#                 */
-/*   Updated: 2021/02/07 14:36:09 by kawish        ########   odam.nl         */
+/*   Updated: 2021/02/09 10:48:03 by kawish        ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,12 +28,12 @@
 // typedef struct s_fields
 struct		fields
 {
+	int		count;
 	int		is_minus;
 	char	padding_char;
 	int		width;
 	int		precision;
 	char	conv_char;
-	// int count;
 };
 // t_fields;
 
@@ -60,7 +60,7 @@ void		format_s(struct fields *fp, char *sval);
 */
 int			count_chars(int n);
 int			count_digits(int n);
-char*		precision_d(struct fields *fp, int dval, char *a, int digits_a, int chars_a);
+char*		precision_d(struct fields *fp, int dval, char *a, int chars_a);
 char*		width_d(struct fields *fp, int dval, char *a, int chars_a);
 void		format_d(struct fields *fp, int dval);
 

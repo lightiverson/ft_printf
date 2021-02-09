@@ -6,7 +6,7 @@
 /*   By: kawish <kawish@student.codam.nl>             +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2021/01/24 14:35:22 by kawish        #+#    #+#                 */
-/*   Updated: 2021/02/07 14:33:49 by kawish        ########   odam.nl         */
+/*   Updated: 2021/02/07 15:25:52 by kawish        ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,6 +14,7 @@
 
 void		init_fields(struct fields *fp)
 {
+	fp->count = 0;
 	fp->is_minus = 0;
 	fp->padding_char = ' ';
 	fp->width = 0;
@@ -41,7 +42,7 @@ void		format(va_list ap, struct fields *fp)
 	}
 }
 
-int			interate_fmt(const char *fmt, va_list ap, struct fields *fp)
+void		interate_fmt(const char *fmt, va_list ap, struct fields *fp)
 {
 	const char		*p_fmt;
 
@@ -50,7 +51,10 @@ int			interate_fmt(const char *fmt, va_list ap, struct fields *fp)
 	while (*p_fmt)
 	{
 		if (*p_fmt != '%')
+		{
 			write(1, p_fmt, 1);
+			fp->count++;
+		}
 		else
 		{
 			p_fmt = set_fields(p_fmt, ap, fp);
@@ -58,17 +62,15 @@ int			interate_fmt(const char *fmt, va_list ap, struct fields *fp)
 		}
 		p_fmt++;
 	}
-	return (0);
 }
 
 int			ft_printf(const char *fmt, ...)
 {
 	va_list			ap;
 	struct fields	f;
-	int				n;
 
 	va_start(ap, fmt);
-	n = interate_fmt(fmt, ap, &f);
+	interate_fmt(fmt, ap, &f);
 	va_end(ap);
-	return (n);
+	return (f.count);
 }

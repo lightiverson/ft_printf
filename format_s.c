@@ -6,7 +6,7 @@
 /*   By: kawish <kawish@student.codam.nl>             +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2021/02/05 12:02:57 by kawish        #+#    #+#                 */
-/*   Updated: 2021/02/07 12:05:21 by kawish        ########   odam.nl         */
+/*   Updated: 2021/02/07 15:27:13 by kawish        ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,6 +37,7 @@ void		width_s(char *sval_dup, int sval_dup_len, struct fields *fp)
 		}
 		ft_putstr_fd(sval_dup, 1);
 	}
+	fp->count = fp->count + strlen(sval_dup) + (fp->width - sval_dup_len);
 }
 
 void		format_s(struct fields *fp, char *sval)
@@ -54,5 +55,8 @@ void		format_s(struct fields *fp, char *sval)
 	if (sval_dup_len < fp->width)
 		width_s(sval_dup, sval_dup_len, fp);
 	else
+	{
 		ft_putstr_fd(sval_dup, 1);
+		fp->count = fp->count + strlen(sval_dup);
+	}
 }
