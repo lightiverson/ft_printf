@@ -6,12 +6,12 @@
 #    By: kawish <kawish@student.codam.nl>             +#+                      #
 #                                                    +#+                       #
 #    Created: 2021/01/09 09:52:36 by kawish        #+#    #+#                  #
-#    Updated: 2021/02/09 14:49:52 by kawish        ########   odam.nl          #
+#    Updated: 2021/02/11 12:07:16 by kawish        ########   odam.nl          #
 #                                                                              #
 # **************************************************************************** #
 
 NAME = libftprintf.a
-OBJ_FILES = ft_printf.o set.o format_s.o format_d.o format_c.o utils.o
+OBJ_FILES = ft_printf.o set.o format_s.o format_d.o format_c.o format_u.o utils.o
 HEADER_FILE = ft_printf.h
 CFLAGS = -Wall -Wextra -Werror
 LIBFT = libft/libft.a

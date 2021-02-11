@@ -165,13 +165,39 @@ int main (void)
 	// ft_printf("%d", ft_printf(":%d:", 45));
 
 	// %c
-	printf(":%c:\n", 'a');
-	ft_printf(":%c:\n", 'a');
+	// printf(":%c:\n", 'a');
+	// ft_printf(":%c:\n", 'a');
 
-	printf(":%2c:\n", 'a');
-	ft_printf(":%2c:\n", 'a');
+	// printf(":%2c:\n", 'a');
+	// ft_printf(":%2c:\n", 'a');
 	
-	printf(":%-2c:\n", 'a');
-	ft_printf(":%-2c:\n", 'a');
+	// printf(":%-2c:\n", 'a');
+	// ft_printf(":%-2c:\n", 'a');
+
+	/* DEZE GAAT NOG FOUT!! FIXEN!! */
+	// printf(":%0*.*d:\n", 3, -2, 0);
+	// ft_printf(":%0*.*d:\n", 3, -2, 0);
+	// ft_printf(":%03.*d:\n", -2, 0);
+
+	/* %u */
+	// printf(":%u:\n", 7235);
+	// ft_printf(":%u:\n", 7235);
+
+	// printf(":%.6u:\n", 7235);
+	// ft_printf(":%.6u:\n", 7235);
+
+	// printf(":%6u:\n", 7235);
+	// ft_printf(":%6u:\n", 7235);
+
+	// printf(":%-6u:\n", 7235);
+	// ft_printf(":%-6u:\n", 7235);
+
+	// printf(":%06u:\n", 7235);
+	// ft_printf(":%06u:\n", 7235);
+
+	printf("%u", 4294967294u);
+	// ft_printf("%u", 4294967295u);
+	// ft_printf("%u", 4294967294u);
+
 	return (0);
 }

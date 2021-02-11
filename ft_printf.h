@@ -6,7 +6,7 @@
 /*   By: kawish <kawish@student.codam.nl>             +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2021/01/09 10:17:02 by kawish        #+#    #+#                 */
-/*   Updated: 2021/02/09 14:43:59 by kawish        ########   odam.nl         */
+/*   Updated: 2021/02/11 12:06:11 by kawish        ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -65,6 +65,8 @@ char*		width_d(struct fields *fp, int dval, char *a, int chars_a);
 void		format_d(struct fields *fp, int dval);
 
 void format_c(struct fields *fp, char cval);
+
+void format_u(struct fields *fp, unsigned int uval);
 
 /*
 ** utils.c
