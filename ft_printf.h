@@ -6,7 +6,7 @@
 /*   By: kawish <kawish@student.codam.nl>             +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2021/01/09 10:17:02 by kawish        #+#    #+#                 */
-/*   Updated: 2021/02/09 10:48:03 by kawish        ########   odam.nl         */
+/*   Updated: 2021/02/09 14:43:59 by kawish        ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -63,6 +63,8 @@ int			count_digits(int n);
 char*		precision_d(struct fields *fp, int dval, char *a, int chars_a);
 char*		width_d(struct fields *fp, int dval, char *a, int chars_a);
 void		format_d(struct fields *fp, int dval);
+
+void format_c(struct fields *fp, char cval);
 
 /*
 ** utils.c

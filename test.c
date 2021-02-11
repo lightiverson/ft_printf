@@ -3,10 +3,8 @@
 int main (void)
 {
 	/* %s */
-	// int x = printf(":%s:\n", "abcdef");
+	// printf(":%s:\n", "abcdef");
 	// ft_printf(":%s:\n", "abcdef");
-	// printf("x = %d\n", x);
-
 
 	/* gelijke width */
 	// printf(":%6s:\n", "abcdef");
@@ -162,9 +160,18 @@ int main (void)
 	// wat is het verschil tussen left aligned en right aligned met nullen negatief en width?
 	// printf(":%-07d", -14);
 
-	printf("%d", printf(":%d:", 45));
-	printf("\n\n");
-	ft_printf("%d", ft_printf(":%d:", 45));
+	// printf("%d", printf(":%d:", 45));
+	// printf("\n\n");
+	// ft_printf("%d", ft_printf(":%d:", 45));
 
+	// %c
+	printf(":%c:\n", 'a');
+	ft_printf(":%c:\n", 'a');
+
+	printf(":%2c:\n", 'a');
+	ft_printf(":%2c:\n", 'a');
+	
+	printf(":%-2c:\n", 'a');
+	ft_printf(":%-2c:\n", 'a');
 	return (0);
 }
