@@ -6,7 +6,7 @@
 /*   By: kawish <kawish@student.codam.nl>             +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2021/01/09 10:17:02 by kawish        #+#    #+#                 */
-/*   Updated: 2021/02/11 12:06:11 by kawish        ########   odam.nl         */
+/*   Updated: 2021/02/16 13:22:55 by kawish        ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -73,5 +73,6 @@ void format_u(struct fields *fp, unsigned int uval);
 */
 int			is_nonzerodigit(int c);
 void		print_fields(struct fields *f);
+void		*zalloc(size_t count, size_t size, char c);
 
 # endif

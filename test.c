@@ -200,8 +200,11 @@ int main (void)
 	// ft_printf("%u", 4294967295u);
 	// ft_printf("%u", 4294967294u);
 
-	printf(":%7u:\n", 33);
-	ft_printf(":%7u:\n", 33);
+	// printf(":%7u:\n", 33);
+	// ft_printf(":%7u:\n", 33);
 
+	printf("return = %d\n", printf(":%.5u:\n", 2));
+	printf("return = %d\n", ft_printf(":%.5u:\n", 2));
+	
 	return (0);
 }

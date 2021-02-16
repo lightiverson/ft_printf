@@ -6,7 +6,7 @@
 /*   By: kawish <kawish@student.codam.nl>             +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2021/02/05 14:55:01 by kawish        #+#    #+#                 */
-/*   Updated: 2021/02/07 14:40:01 by kawish        ########   odam.nl         */
+/*   Updated: 2021/02/16 13:21:18 by kawish        ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -53,4 +53,25 @@ void	print_fields(struct fields *f)
 	printf("f.width = %d\n", f->width);
 	printf("f.precision = %d\n", f->precision);
 	printf("f.conv_char = %c\n", f->conv_char);
+}
+
+/*
+** is_nonzerodigit: Custom function that mallocs,
+** checks if malloc has worked,
+** and fills the malloced array with CHAR C.
+*/
+
+void	*zalloc(size_t count, size_t size, char c)
+{
+	void	*a;
+
+	if ((count == 0) || (size == 0))
+	{
+		count = 1;
+		size = 1;
+	}
+	a = malloc(count * size);
+	if (a)
+		ft_memset(a, c, count * size);
+	return (a);
 }
