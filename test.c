@@ -3,7 +3,8 @@
 int main (void)
 {
 	/* %s */
-	// printf(":%s:\n", "abcdef");
+	// char *naam = "Ajay";
+	// printf(":Hallo, %s:\n", naam);
 	// ft_printf(":%s:\n", "abcdef");
 
 	/* gelijke width */
@@ -195,9 +196,12 @@ int main (void)
 	// printf(":%06u:\n", 7235);
 	// ft_printf(":%06u:\n", 7235);
 
-	printf("%u", 4294967294u);
+	// printf("%u", 4294967294u);
 	// ft_printf("%u", 4294967295u);
 	// ft_printf("%u", 4294967294u);
+
+	printf(":%7u:\n", 33);
+	ft_printf(":%7u:\n", 33);
 
 	return (0);
 }
