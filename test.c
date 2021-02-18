@@ -203,8 +203,14 @@ int main (void)
 	// printf(":%7u:\n", 33);
 	// ft_printf(":%7u:\n", 33);
 
-	printf("return = %d\n", printf(":%.5u:\n", 2));
-	printf("return = %d\n", ft_printf(":%.5u:\n", 2));
+	// printf("return = %d\n", printf(":%.5u:\n", 2));
+	// printf("return = %d\n", ft_printf(":%.5u:\n", 2));
+
+	// printf(":%.6d:\n", -3);
+	// ft_printf(":%.6d:\n", -3);
+
+	printf(":%.5d:\n", 2);
+	ft_printf(":%.5d:\n", 2);
 	
 	return (0);
 }

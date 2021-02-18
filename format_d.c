@@ -6,13 +6,13 @@
 /*   By: kawish <kawish@student.codam.nl>             +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2021/02/05 14:51:41 by kawish        #+#    #+#                 */
-/*   Updated: 2021/02/09 11:04:37 by kawish        ########   odam.nl         */
+/*   Updated: 2021/02/18 11:03:44 by kawish        ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_printf.h"
 
-int			count_chars(int n)
+int				count_chars(int n)
 {
 	int		c;
 
@@ -33,7 +33,7 @@ int			count_chars(int n)
 	return (c);
 }
 
-int			count_digits(int n)
+int				count_digits(int n)
 {
 	int		c;
 
@@ -53,69 +53,102 @@ int			count_digits(int n)
 	return (c);
 }
 
-char		*precision_d(struct fields *fp, int dval, char *a, int chars_a)
+static void		get_a(struct fields *fp, int dval, char **a, int *chars_a)
+{
+	*a = ft_itoa(dval);
+	if (!*a)
+	{
+		fp->count = -1;
+		return ;
+	}
+	*chars_a = strlen(*a);
+}
+
+void			precision_d(struct fields *fp, int dval, char **a, int *chars_a)
 {
 	int		digits_a;
-	char	ret[fp->precision + chars_a + 1];
-	char	*p_ret;
+	char	*r;
+	char	*r_dup;
+	char	*a_dup;
 
+	a_dup = *a;
 	digits_a = count_digits(dval);
-	p_ret = ret;
-	memset(ret, '0', sizeof(ret));
-	if (dval < 0)
+	if (fp->precision >= 0 && digits_a < fp->precision)
 	{
-		*p_ret++ = '-';
-		a++;
-	}
-	strlcpy(p_ret + (fp->precision - digits_a), a, strlen(p_ret) + 1);
-	return (ft_strdup(ret));
-}
-
-char		*width_d(struct fields *fp, int dval, char *a, int chars_a)
-{
-	char	ret[fp->width + chars_a + 1];
-	char	*p_ret;
-
-	p_ret = ret;
-	memset(ret, fp->padding_char, sizeof(ret));
-	if (fp->is_minus)
-		memcpy(ret, a, strlen(a));
-	else
-	{
-		if (dval < 0 && fp->padding_char == '0')
+		r = zalloc(fp->precision + *chars_a + 1, sizeof(*r), '0');
+		if (!r)
 		{
-			*p_ret++ = '-';
-			a++;
+			fp->count = -1;
+			return ;
 		}
-		memcpy(p_ret + (fp->width - chars_a), a, strlen(a));
+		r_dup = r;
+		if (dval < 0)
+		{
+			*r_dup++ = '-';
+			a_dup++;
+		}
+		strlcpy(r_dup + (fp->precision - digits_a), a_dup, strlen(r_dup) + 1);
+		free(*a);
+		*a = r;
 	}
-	ret[fp->width] = '\0';
-	return (ft_strdup(ret));
+	else if (fp->precision == 0 && dval == 0)
+		memset(*a, '\0', strlen(*a) + 1);
+	*chars_a = strlen(*a);
 }
 
-void		format_d(struct fields *fp, int dval)
+void			width_d(struct fields *fp, int dval, char **a, int *chars_a)
+{
+	char *r;
+	char *r_dup;
+	char *a_dup;
+
+	a_dup = *a;
+	if (*chars_a < fp->width)
+	{
+		r = zalloc(fp->width + *chars_a + 1, sizeof(*r), fp->padding_char);
+		if (!r)
+		{
+			fp->count = -1;
+			return ;
+		}
+		r_dup = r;
+		if (fp->is_minus)
+			memcpy(r_dup, *a, strlen(*a));
+		else
+		{
+			if (dval < 0 && fp->padding_char == '0')
+			{
+				*r_dup++ = '-';
+				a_dup++;
+			}
+			memcpy(r_dup + (fp->width - *chars_a), a_dup, strlen(*a));
+		}
+		r[fp->width] = '\0';
+		free(*a);
+		*a = r;
+		*chars_a = strlen(*a);
+	}
+}
+
+void			format_d(struct fields *fp, int dval)
 {
 	char			*a;
 	int				digits_a;
 	int				chars_a;
 
-	a = ft_itoa(dval);
-	if (!a)
+	chars_a = 0;
+	get_a(fp, dval, &a, &chars_a);
+	if (fp->count == -1)
 		return ;
 	digits_a = count_digits(dval);
-	chars_a = count_chars(dval);
-	if (fp->precision >= 0 && digits_a < fp->precision)
-	{
-		a = precision_d(fp, dval, a, chars_a);
-		chars_a = (int)strlen(a);
-	}
-	else if (fp->precision == 0 && dval == 0)
-	{
-		memset(a, '\0', strlen(a) + 1);
-		chars_a = (int)strlen(a);
-	}
-	if (chars_a < fp->width)
-		a = width_d(fp, dval, a, chars_a);
-	fp->count = fp->count + strlen(a);
+	precision_d(fp, dval, &a, &chars_a);
+	if (fp->count == -1)
+		return ;
+	width_d(fp, dval, &a, &chars_a);
+	if (fp->count == -1)
+		return ;
+	fp->count = fp->count + chars_a;
 	ft_putstr_fd(a, 1);
+	free(a);
+	return ;
 }

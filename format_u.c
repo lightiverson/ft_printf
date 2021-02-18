@@ -6,13 +6,13 @@
 /*   By: kawish <kawish@student.codam.nl>             +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2021/02/11 12:04:32 by kawish        #+#    #+#                 */
-/*   Updated: 2021/02/16 13:25:06 by kawish        ########   odam.nl         */
+/*   Updated: 2021/02/18 11:02:13 by kawish        ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_printf.h"
 
-void	get_a(struct fields *fp, unsigned int uval, char **a, int *a_len)
+static void	get_a(struct fields *fp, unsigned int uval, char **a, int *a_len)
 {
 	*a = ft_itoa(uval);
 	if (!*a)
@@ -23,7 +23,8 @@ void	get_a(struct fields *fp, unsigned int uval, char **a, int *a_len)
 	*a_len = strlen(*a);
 }
 
-void	precision_u(struct fields *fp, unsigned int uval, char **a, int *a_len)
+void		precision_u(struct fields *fp, unsigned int uval,
+	char **a, int *a_len)
 {
 	char *r;
 	char *r_dup;
@@ -47,7 +48,7 @@ void	precision_u(struct fields *fp, unsigned int uval, char **a, int *a_len)
 	*a_len = strlen(*a);
 }
 
-void	width_u(struct fields *fp, char **a, int *a_len)
+void		width_u(struct fields *fp, char **a, int *a_len)
 {
 	char *r;
 	char *r_dup;
@@ -72,7 +73,7 @@ void	width_u(struct fields *fp, char **a, int *a_len)
 	}
 }
 
-void	format_u(struct fields *fp, unsigned int uval)
+void		format_u(struct fields *fp, unsigned int uval)
 {
 	char	*a;
 	int		a_len;
