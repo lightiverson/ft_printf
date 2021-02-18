@@ -209,11 +209,14 @@ int main (void)
 	// printf(":%.5d:\n", 2);
 	// ft_printf(":%.5d:\n", 2);
 	
-	printf(":%.4d:\n", 54);
-	ft_printf(":%.4d:\n", 54);
+	// printf(":%.4d:\n", 54);
+	// ft_printf(":%.4d:\n", 54);
 
 	// printf(":%.4d:\n", -54);
 	// ft_printf(":%.4d:\n", -54);
+
+	// printf(":%8.5d:\n", 34);
+	ft_printf(":%8.5d:\n", 34);
 
 	return (0);
 }

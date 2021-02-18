@@ -6,105 +6,114 @@
 /*   By: kawish <kawish@student.codam.nl>             +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2021/02/05 14:51:41 by kawish        #+#    #+#                 */
-/*   Updated: 2021/02/18 16:01:59 by kawish        ########   odam.nl         */
+/*   Updated: 2021/02/18 22:47:57 by kawish        ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_printf.h"
 
-static void		get_a(struct fields *fp, int dval, char **a, int *a_len)
+int		get_digits(char *s)
 {
-	*a = ft_itoa(dval);
-	if (!*a)
+	int i;
+
+	i = 0;
+	while (*s)
+	{
+		if (isdigit(*s))
+			i++;
+		s++;
+	}
+	return (i);
+}
+
+void	get_data(struct fields *fp, t_data *data, int dval)
+{
+	data->a = ft_itoa(dval);
+	if (!data->a)
 	{
 		fp->count = -1;
 		return ;
 	}
-	*a_len = strlen(*a);
+	data->a_dup = data->a;
+	data->a_len = strlen(data->a);
+	data->a_digits = get_digits(data->a);
+	return ;
 }
 
-void			helper_neg_d(char **a_dup, char **r_dup)
+void	precision_d_nega(t_data *data)
 {
-	**r_dup = '-';
-	(*r_dup)++;
-	(*a_dup)++;
+	*data->b_dup++ = '-';
+	data->a_dup++;
 }
 
-void			precision_d(struct fields *fp, int dval, char **a, int *a_len)
+void	precision_d(struct fields *fp, t_data *data, int dval)
 {
-	int		digits_a;
-	char	*r;
-	char	*r_dup;
-	char	*a_dup;
-
-	a_dup = *a;
-	digits_a = count_digits(dval);
-	if (fp->precision >= 0 && digits_a < fp->precision)
+	if (fp->precision >= 0 && data->a_digits < fp->precision)
 	{
-		r = zalloc(fp->precision + *a_len + 1, sizeof(*r), '0');
-		if (!r)
+		data->b = zalloc(fp->precision + data->a_len + 1,
+			sizeof(*(data->b)), '0');
+		if (!data->b)
 		{
 			fp->count = -1;
 			return ;
 		}
-		r_dup = r;
+		data->b_dup = data->b;
 		if (dval < 0)
-			helper_neg_d(&a_dup, &r_dup);
-		strlcpy(r_dup + (fp->precision - digits_a), a_dup, strlen(r_dup) + 1);
-		free(*a);
-		*a = r;
+			precision_d_nega(data);
+		memcpy(data->b_dup + (fp->precision - data->a_digits),
+			data->a_dup, strlen(data->b_dup));
+		data->b_dup[fp->precision] = '\0';
+		free(data->a);
+		data->a = data->b;
+		data->a_dup = data->a;
 	}
 	else if (fp->precision == 0 && dval == 0)
-		memset(*a, '\0', strlen(*a) + 1);
-	*a_len = strlen(*a);
+		data->a[0] = '\0';
+	data->a_len = strlen(data->a);
 }
 
-void			width_d(struct fields *fp, int dval, char **a, int *a_len)
+void	width_d(t_data *data, struct fields *fp, int dval)
 {
-	char *r;
-	char *r_dup;
-	char *a_dup;
-
-	a_dup = *a;
-	r = zalloc(fp->width + *a_len + 1, sizeof(*r), fp->padding_char);
-	if (!r)
+	if ((int)data->a_len < fp->width)
 	{
-		fp->count = -1;
-		return ;
+		data->b = zalloc(fp->width + data->a_len + 1,
+			sizeof(*(data->b)), fp->padding_char);
+		if (!data->b)
+		{
+			fp->count = -1;
+			return ;
+		}
+		data->b_dup = data->b;
+		if (fp->is_minus)
+			memcpy(data->b_dup, data->a, data->a_len);
+		else
+		{
+			if (dval < 0 && fp->padding_char == '0')
+				precision_d_nega(data);
+			memcpy(data->b_dup + (fp->width - data->a_len),
+				data->a_dup, strlen(data->a_dup));
+		}
+		data->b[fp->width] = '\0';
+		free(data->a);
+		data->a = data->b;
+		data->a_len = strlen(data->a);
 	}
-	r_dup = r;
-	if (fp->is_minus)
-		memcpy(r_dup, *a, strlen(*a));
-	else
-	{
-		if (dval < 0 && fp->padding_char == '0')
-			helper_neg_d(&a_dup, &r_dup);
-		memcpy(r_dup + (fp->width - *a_len), a_dup, strlen(*a));
-	}
-	r[fp->width] = '\0';
-	free(*a);
-	*a = r;
-	*a_len = strlen(*a);
 }
 
-void			format_d(struct fields *fp, int dval)
+void	format_d(struct fields *fp, int dval)
 {
-	char			*a;
-	int				a_len;
+	t_data data;
 
-	a_len = 0;
-	get_a(fp, dval, &a, &a_len);
+	get_data(fp, &data, dval);
 	if (fp->count == -1)
 		return ;
-	precision_d(fp, dval, &a, &a_len);
+	precision_d(fp, &data, dval);
 	if (fp->count == -1)
 		return ;
-	if (a_len < fp->width)
-		width_d(fp, dval, &a, &a_len);
+	width_d(&data, fp, dval);
 	if (fp->count == -1)
 		return ;
-	fp->count = fp->count + a_len;
-	ft_putstr_fd(a, 1);
-	free(a);
+	ft_putstr_fd(data.a, 1);
+	free(data.a);
 	return ;
 }

@@ -6,7 +6,7 @@
 /*   By: kawish <kawish@student.codam.nl>             +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2021/01/09 10:17:02 by kawish        #+#    #+#                 */
-/*   Updated: 2021/02/18 10:57:36 by kawish        ########   odam.nl         */
+/*   Updated: 2021/02/18 22:51:43 by kawish        ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,6 +20,16 @@
 # include <stdlib.h>
 # include <ctype.h>
 # include <stdbool.h>
+
+typedef struct s_data
+{
+	char *a;
+	char *a_dup;
+	size_t a_len;
+	int a_digits;
+	char *b;
+	char *b_dup;
+} t_data;
 
 /*
 ** struct
@@ -74,5 +84,6 @@ void format_u(struct fields *fp, unsigned int uval);
 int			is_nonzerodigit(int c);
 void		print_fields(struct fields *f);
 void		*zalloc(size_t count, size_t size, char c);
+int		get_digits(char *s);
 
 # endif
