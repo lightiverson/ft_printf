@@ -6,7 +6,7 @@
 /*   By: kawish <kawish@student.codam.nl>             +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2021/02/05 14:55:01 by kawish        #+#    #+#                 */
-/*   Updated: 2021/02/18 16:01:56 by kawish        ########   odam.nl         */
+/*   Updated: 2021/02/18 22:53:42 by kawish        ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -105,4 +105,18 @@ int		count_chars(int n)
 	}
 	c++;
 	return (c);
+}
+
+int		get_digits(char *s)
+{
+	int i;
+
+	i = 0;
+	while (*s)
+	{
+		if (isdigit(*s))
+			i++;
+		s++;
+	}
+	return (i);
 }

@@ -6,25 +6,11 @@
 /*   By: kawish <kawish@student.codam.nl>             +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2021/02/05 14:51:41 by kawish        #+#    #+#                 */
-/*   Updated: 2021/02/18 22:47:57 by kawish        ########   odam.nl         */
+/*   Updated: 2021/02/18 22:53:42 by kawish        ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_printf.h"
-
-int		get_digits(char *s)
-{
-	int i;
-
-	i = 0;
-	while (*s)
-	{
-		if (isdigit(*s))
-			i++;
-		s++;
-	}
-	return (i);
-}
 
 void	get_data(struct fields *fp, t_data *data, int dval)
 {
