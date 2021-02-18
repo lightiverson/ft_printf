@@ -137,9 +137,6 @@ int main (void)
 	// printf(":%.1d:\n", -54);
 	// ft_printf(":%.1d:\n", -54);
 
-	// printf(":%.4d:\n", -54);
-	// ft_printf(":%.4d:\n", -54);
-
 	// printf(":%7d:\n", 33);
 	// ft_printf(":%7d:\n", 33);
 
@@ -209,8 +206,14 @@ int main (void)
 	// printf(":%.6d:\n", -3);
 	// ft_printf(":%.6d:\n", -3);
 
-	printf(":%.5d:\n", 2);
-	ft_printf(":%.5d:\n", 2);
+	// printf(":%.5d:\n", 2);
+	// ft_printf(":%.5d:\n", 2);
 	
+	printf(":%.4d:\n", 54);
+	ft_printf(":%.4d:\n", 54);
+
+	// printf(":%.4d:\n", -54);
+	// ft_printf(":%.4d:\n", -54);
+
 	return (0);
 }
