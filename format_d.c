@@ -6,7 +6,7 @@
 /*   By: kawish <kawish@student.codam.nl>             +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2021/02/05 14:51:41 by kawish        #+#    #+#                 */
-/*   Updated: 2021/02/19 15:19:32 by kawish        ########   odam.nl         */
+/*   Updated: 2021/02/19 15:24:31 by kawish        ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -58,7 +58,7 @@ void	precision_d(struct fields *fp, t_data *data)
 	data->a_len = strlen(data->a);
 }
 
-void	width_d(t_data *data, struct fields *fp, int dval)
+void	width_d(t_data *data, struct fields *fp)
 {
 	if ((int)data->a_len < fp->width)
 	{
@@ -74,7 +74,7 @@ void	width_d(t_data *data, struct fields *fp, int dval)
 			memcpy(data->b_dup, data->a, data->a_len);
 		else
 		{
-			if (dval < 0 && fp->padding_char == '0')
+			if (*data->a == '-' && fp->padding_char == '0')
 				precision_d_nega(data);
 			memcpy(data->b_dup + (fp->width - data->a_len),
 				data->a_dup, strlen(data->a_dup));
@@ -96,7 +96,7 @@ void	format_d(struct fields *fp, int dval)
 	precision_d(fp, &data);
 	if (fp->count == -1)
 		return ;
-	width_d(&data, fp, dval);
+	width_d(&data, fp);
 	if (fp->count == -1)
 		return ;
 	ft_putstr_fd(data.a, 1);
