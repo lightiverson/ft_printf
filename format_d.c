@@ -6,7 +6,7 @@
 /*   By: kawish <kawish@student.codam.nl>             +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2021/02/05 14:51:41 by kawish        #+#    #+#                 */
-/*   Updated: 2021/02/18 22:53:42 by kawish        ########   odam.nl         */
+/*   Updated: 2021/02/19 15:19:32 by kawish        ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,7 +32,7 @@ void	precision_d_nega(t_data *data)
 	data->a_dup++;
 }
 
-void	precision_d(struct fields *fp, t_data *data, int dval)
+void	precision_d(struct fields *fp, t_data *data)
 {
 	if (fp->precision >= 0 && data->a_digits < fp->precision)
 	{
@@ -44,7 +44,7 @@ void	precision_d(struct fields *fp, t_data *data, int dval)
 			return ;
 		}
 		data->b_dup = data->b;
-		if (dval < 0)
+		if (*data->a == '-')
 			precision_d_nega(data);
 		memcpy(data->b_dup + (fp->precision - data->a_digits),
 			data->a_dup, strlen(data->b_dup));
@@ -53,7 +53,7 @@ void	precision_d(struct fields *fp, t_data *data, int dval)
 		data->a = data->b;
 		data->a_dup = data->a;
 	}
-	else if (fp->precision == 0 && dval == 0)
+	else if (fp->precision == 0 && *data->a == '0')
 		data->a[0] = '\0';
 	data->a_len = strlen(data->a);
 }
@@ -93,7 +93,7 @@ void	format_d(struct fields *fp, int dval)
 	get_data(fp, &data, dval);
 	if (fp->count == -1)
 		return ;
-	precision_d(fp, &data, dval);
+	precision_d(fp, &data);
 	if (fp->count == -1)
 		return ;
 	width_d(&data, fp, dval);
