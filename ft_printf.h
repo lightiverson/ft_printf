@@ -6,7 +6,7 @@
 /*   By: kawish <kawish@student.codam.nl>             +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2021/01/09 10:17:02 by kawish        #+#    #+#                 */
-/*   Updated: 2021/02/18 22:51:43 by kawish        ########   odam.nl         */
+/*   Updated: 2021/02/19 15:53:34 by kawish        ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,6 +21,11 @@
 # include <ctype.h>
 # include <stdbool.h>
 
+/*
+** Struct to handle %d, %u.
+** Zoek nog uit wat deze syntax precies doet.
+*/
+
 typedef struct s_data
 {
 	char *a;
@@ -32,7 +37,7 @@ typedef struct s_data
 } t_data;
 
 /*
-** struct
+** Struct to combine format fields.
 */
 
 // typedef struct s_fields
@@ -68,22 +73,25 @@ void		format_s(struct fields *fp, char *sval);
 /*
 ** format_d.c
 */
-int			count_chars(int n);
-int			count_digits(int n);
-// char*		precision_d(struct fields *fp, int dval, char *a, int chars_a);
-// char*		width_d(struct fields *fp, int dval, char *a, int chars_a);
+void		precision_d(struct fields *fp, t_data *data);
+void		width_d(t_data *data, struct fields *fp);
 void		format_d(struct fields *fp, int dval);
 
-void format_c(struct fields *fp, char cval);
+/*
+** format_c.c
+*/
+void		format_c(struct fields *fp, char cval);
 
-void format_u(struct fields *fp, unsigned int uval);
+/*
+** format_u.c
+*/
+void		format_u(struct fields *fp, unsigned int uval);
 
 /*
 ** utils.c
 */
 int			is_nonzerodigit(int c);
-void		print_fields(struct fields *f);
 void		*zalloc(size_t count, size_t size, char c);
-int		get_digits(char *s);
+int			get_digits(char *s);
 
 # endif
