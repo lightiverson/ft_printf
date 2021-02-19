@@ -6,7 +6,7 @@
 /*   By: kawish <kawish@student.codam.nl>             +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2021/02/11 12:04:32 by kawish        #+#    #+#                 */
-/*   Updated: 2021/02/19 15:55:02 by kawish        ########   odam.nl         */
+/*   Updated: 2021/02/19 21:47:16 by kawish        ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,7 @@
 
 void	get_data_u(struct fields *fp, t_data *data, unsigned int uval)
 {
-	data->a = ft_itoa(uval);
+	data->a = uitoa(uval);
 	if (!data->a)
 	{
 		fp->count = -1;
