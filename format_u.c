@@ -6,7 +6,7 @@
 /*   By: kawish <kawish@student.codam.nl>             +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2021/02/11 12:04:32 by kawish        #+#    #+#                 */
-/*   Updated: 2021/02/23 12:14:29 by kawish        ########   odam.nl         */
+/*   Updated: 2021/02/23 12:37:01 by kawish        ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,10 +33,10 @@ void	format_u(struct fields *fp, unsigned int uval)
 	get_data_u(fp, &data, uval);
 	if (fp->count == -1)
 		return ;
-	precision_d(fp, &data);
+	precision_diux(fp, &data);
 	if (fp->count == -1)
 		return ;
-	width_d(&data, fp);
+	width_diux(&data, fp);
 	if (fp->count == -1)
 		return ;
 	ft_putstr_fd(data.a, 1);

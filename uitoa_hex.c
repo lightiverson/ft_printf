@@ -6,7 +6,7 @@
 /*   By: kawish <kawish@student.codam.nl>             +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2021/02/23 11:36:09 by kawish        #+#    #+#                 */
-/*   Updated: 2021/02/23 12:02:45 by kawish        ########   odam.nl         */
+/*   Updated: 2021/02/23 13:03:36 by kawish        ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,7 +16,7 @@
 static	int		ft_int2pwr_twee(int x, int n)
 {
 	int i;
-	int result;
+	unsigned long result;
 
 	i = 0;
 	result = 1;
@@ -28,10 +28,10 @@ static	int		ft_int2pwr_twee(int x, int n)
 	return (result);
 }
 
-int				get_largest_power(unsigned int n)
+int				get_largest_power(unsigned long n)
 {
 	int				i;
-	unsigned int	n_dup;
+	unsigned long	n_dup;
 
 	i = 0;
 	n_dup = n;
@@ -44,12 +44,12 @@ int				get_largest_power(unsigned int n)
 	return (i);
 }
 
-char			*uitoa_hex(unsigned int n)
+char			*uitoa_hex(unsigned long n)
 {
 	unsigned int	i;
 	int				largest_power;
 	char			*str;
-	unsigned int	r;
+	unsigned long	r;
 	char			c;
 
 	i = 0;

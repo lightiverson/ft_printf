@@ -6,7 +6,7 @@
 /*   By: kawish <kawish@student.codam.nl>             +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2021/01/09 10:17:02 by kawish        #+#    #+#                 */
-/*   Updated: 2021/02/23 12:14:29 by kawish        ########   odam.nl         */
+/*   Updated: 2021/02/23 13:00:12 by kawish        ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -71,16 +71,14 @@ const char	*set_fields(const char *p_fmt, va_list ap, struct fields *fp);
 void		format_s(struct fields *fp, char *sval);
 
 /*
-** format_d.c
-*/
-void		precision_d(struct fields *fp, t_data *data);
-void		width_d(t_data *data, struct fields *fp);
-void		format_d(struct fields *fp, int dval);
-
-/*
 ** format_c.c
 */
 void		format_c(struct fields *fp, char cval);
+
+/*
+** format_d.c
+*/
+void		format_d(struct fields *fp, int dval);
 
 /*
 ** format_u.c
@@ -90,7 +88,13 @@ void		format_u(struct fields *fp, unsigned int uval);
 /*
 ** format_x.c
 */
-void format_x(struct fields *fp, unsigned int xval);
+void 		format_x(struct fields *fp, unsigned int xval);
+
+/*
+** precision_width_diux.c
+*/
+void		precision_diux(struct fields *fp, t_data *data);
+void		width_diux(t_data *data, struct fields *fp);
 
 /*
 ** utils.c
@@ -98,8 +102,7 @@ void format_x(struct fields *fp, unsigned int xval);
 int			is_nonzerodigit(int c);
 void		*zalloc(size_t count, size_t size, char c);
 int			get_alnum(char *s);
-
-char			*uitoa(unsigned int n);
-char			*uitoa_hex(unsigned long n);
+char		*uitoa(unsigned int n);
+char		*uitoa_hex(unsigned long n);
 
 # endif
