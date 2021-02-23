@@ -6,7 +6,7 @@
 /*   By: kawish <kawish@student.codam.nl>             +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2021/02/05 14:55:01 by kawish        #+#    #+#                 */
-/*   Updated: 2021/02/18 22:53:42 by kawish        ########   odam.nl         */
+/*   Updated: 2021/02/23 12:13:35 by kawish        ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -107,14 +107,14 @@ int		count_chars(int n)
 	return (c);
 }
 
-int		get_digits(char *s)
+int		get_alnum(char *s)
 {
 	int i;
 
 	i = 0;
 	while (*s)
 	{
-		if (isdigit(*s))
+		if (isalnum(*s))
 			i++;
 		s++;
 	}

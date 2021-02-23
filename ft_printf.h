@@ -6,7 +6,7 @@
 /*   By: kawish <kawish@student.codam.nl>             +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2021/01/09 10:17:02 by kawish        #+#    #+#                 */
-/*   Updated: 2021/02/19 21:46:45 by kawish        ########   odam.nl         */
+/*   Updated: 2021/02/23 12:14:29 by kawish        ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -88,12 +88,18 @@ void		format_c(struct fields *fp, char cval);
 void		format_u(struct fields *fp, unsigned int uval);
 
 /*
+** format_x.c
+*/
+void format_x(struct fields *fp, unsigned int xval);
+
+/*
 ** utils.c
 */
 int			is_nonzerodigit(int c);
 void		*zalloc(size_t count, size_t size, char c);
-int			get_digits(char *s);
+int			get_alnum(char *s);
 
 char			*uitoa(unsigned int n);
+char			*uitoa_hex(unsigned long n);
 
 # endif

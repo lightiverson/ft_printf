@@ -216,7 +216,17 @@ int main (void)
 	// ft_printf(":%.4d:\n", -54);
 
 	// printf(":%8.5d:\n", 34);
-	ft_printf(":%8.5d:\n", 34);
+	// ft_printf(":%8.5d:\n", 34);
+
+	// printf(":this %x number:\n", 17);
+	// ft_printf(":%x:\n", 17);
+	// printf(":this %x number:\n", -17);
+	// printf(":this %x number:\n", 0);
+	// printf(":%x:\n", 3);
+	// printf(":%x:\n", 4294967295u);
+
+	// printf(":%.4x:\n", 5263);
+	ft_printf(":%.4x:\n", 5263);
 
 	return (0);
 }

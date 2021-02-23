@@ -1,20 +1,20 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        ::::::::            */
-/*   format_u.c                                         :+:    :+:            */
+/*   format_x.c                                         :+:    :+:            */
 /*                                                     +:+                    */
 /*   By: kawish <kawish@student.codam.nl>             +#+                     */
 /*                                                   +#+                      */
-/*   Created: 2021/02/11 12:04:32 by kawish        #+#    #+#                 */
-/*   Updated: 2021/02/23 12:14:29 by kawish        ########   odam.nl         */
+/*   Created: 2021/02/20 20:50:23 by kawish        #+#    #+#                 */
+/*   Updated: 2021/02/23 12:14:16 by kawish        ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_printf.h"
 
-void	get_data_u(struct fields *fp, t_data *data, unsigned int uval)
+void get_data_x(struct fields *fp, t_data *data, unsigned int xval)
 {
-	data->a = uitoa(uval);
+	data->a = uitoa_hex(xval);
 	if (!data->a)
 	{
 		fp->count = -1;
@@ -26,11 +26,11 @@ void	get_data_u(struct fields *fp, t_data *data, unsigned int uval)
 	return ;
 }
 
-void	format_u(struct fields *fp, unsigned int uval)
+void format_x(struct fields *fp, unsigned int xval)
 {
 	t_data data;
 
-	get_data_u(fp, &data, uval);
+	get_data_x(fp, &data, xval);
 	if (fp->count == -1)
 		return ;
 	precision_d(fp, &data);
