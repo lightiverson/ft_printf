@@ -6,126 +6,80 @@
 /*   By: kawish <kawish@student.codam.nl>             +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2021/02/23 11:36:09 by kawish        #+#    #+#                 */
-/*   Updated: 2021/02/23 13:03:36 by kawish        ########   odam.nl         */
+/*   Updated: 2021/02/23 21:24:08 by kawish        ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_printf.h"
 
-/*
-static	int		ft_int2pwr_twee(int x, int n)
+static int				get_no_of_digits(unsigned long n)
 {
 	int i;
-	unsigned long result;
 
-	i = 0;
-	result = 1;
-	while (i < n)
+	i = 1;
+	while (n > 15)
 	{
-		result *= x;
+		n = n / 16;
 		i++;
 	}
-	return (result);
-}
-
-int				get_largest_power(unsigned long n)
-{
-	int				i;
-	unsigned long	n_dup;
-
-	i = 0;
-	n_dup = n;
-	while (n_dup != 0)
-	{
-		n_dup = n / ft_int2pwr_twee(16, i);
-		i++;
-	}
-	i = i - 2;
 	return (i);
 }
 
-char			*uitoa_hex(unsigned long n)
+static unsigned long	ui_pow(int base, int exponent)
 {
-	unsigned int	i;
-	int				largest_power;
-	char			*str;
+	int				i;
 	unsigned long	r;
-	char			c;
 
 	i = 0;
-	largest_power = get_largest_power(n);
-	str = ft_calloc(largest_power + 1, sizeof(*str));
-	if (!str)
-		return (0);
-	while (largest_power >= 0)
+	r = 1;
+	while (i < exponent)
 	{
-		r = n / ft_int2pwr_twee(16, largest_power);
-		if (r < 10)
-			c = r + '0';
-		else
-			c = r - 10 + 'a';
-		str[i] = c;
-		i++;
-		n = n - (r * ft_int2pwr_twee(16, largest_power));
-		largest_power = largest_power - 1;
-	}
-	return (str);
-}
-*/
-
-static int				len_nb(unsigned long n)
-{
-	int		i;
-	long	nb;
-
-	i = 0;
-	nb = n;
-	while (nb != 0)
-	{
-		nb = nb / 16;
+		r = r * base;
 		i++;
 	}
-	if (i == 0)
-		return (1);
-	else
-		return (i);
+	return (r);
 }
 
-static unsigned long	power(int base, int pow)
+static unsigned long	get_largest_exponent(unsigned long n)
 {
-	unsigned long	result;
+	unsigned long i;
+	unsigned long y;
 
-	result = 1;
-	while (pow != 0)
-	{
-		result = result * base;
-		pow--;
-	}
-	return (result);
+	i = 1;
+	y = n;
+	while (n / ui_pow(16, i) != 0)
+		i++;
+	i = i - 1;
+	return (i);
 }
 
 char					*uitoa_hex(unsigned long n)
 {
 	int				i;
-	int				len;
-	unsigned long	result;
-	char			*n_str;
+	unsigned long	y;
+	int				no_of_digits;
+	unsigned long	largest_exponent;
+	char			*str;
+	char			c;
 
 	i = 0;
-	len = len_nb(n);
-	n_str = (char*)malloc(sizeof(char) * (len + 1));
-	if (n_str == NULL)
-		return (NULL);
-	while (i < len)
+	y = 0;
+	no_of_digits = get_no_of_digits(n);
+	largest_exponent = get_largest_exponent(n);
+	str = ft_calloc(no_of_digits + 1, sizeof(*str));
+	if (!str)
+		return (0);
+	while (i < no_of_digits)
 	{
-		result = n / power(16, len - 1 - i);
-		result = result % 16;
-		if (result < 10)
-			*(n_str + i) = result + '0';
+		y = n / ui_pow(16, largest_exponent);
+		n = n % ui_pow(16, largest_exponent);
+		largest_exponent = largest_exponent - 1;
+		if (y < 10)
+			c = y + '0';
 		else
-			*(n_str + i) = result - 10 + 'a';
+			c = y - 10 + 'a';
+		str[i] = c;
 		i++;
 	}
-	*(n_str + i) = '\0';
-	return (n_str);
+	return (str);
 }

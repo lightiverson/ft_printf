@@ -6,13 +6,13 @@
 /*   By: kawish <kawish@student.codam.nl>             +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2021/02/20 20:50:23 by kawish        #+#    #+#                 */
-/*   Updated: 2021/02/23 12:37:29 by kawish        ########   odam.nl         */
+/*   Updated: 2021/02/23 21:20:47 by kawish        ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_printf.h"
 
-void get_data_x(struct fields *fp, t_data *data, unsigned int xval)
+void	get_data_x(struct fields *fp, t_data *data, unsigned int xval)
 {
 	data->a = uitoa_hex(xval);
 	if (!data->a)
@@ -26,7 +26,7 @@ void get_data_x(struct fields *fp, t_data *data, unsigned int xval)
 	return ;
 }
 
-void format_x(struct fields *fp, unsigned int xval)
+void	format_x(struct fields *fp, unsigned int xval)
 {
 	t_data data;
 
