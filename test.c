@@ -239,7 +239,10 @@ int main (void)
 	// ft_printf(":%x:\n", 2000);
 
 	// printf(":%x:\n", 4294967295u);
-	ft_printf(":%x:\n", 4294967295u);
+	// ft_printf(":%x:\n", 4294967295u);
+
+	// printf(":%5X:\n", 52625);
+	ft_printf(":%5X:\n", 52625);
 
 	return (0);
 }

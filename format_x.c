@@ -6,11 +6,23 @@
 /*   By: kawish <kawish@student.codam.nl>             +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2021/02/20 20:50:23 by kawish        #+#    #+#                 */
-/*   Updated: 2021/02/23 21:20:47 by kawish        ########   odam.nl         */
+/*   Updated: 2021/02/25 17:55:50 by kawish        ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_printf.h"
+
+void str_toupper(char *str)
+{
+	int i;
+
+	i = 0;
+	while (str[i] != '\0')
+	{
+		str[i] = toupper(str[i]);
+		i++;
+	}
+}
 
 void	get_data_x(struct fields *fp, t_data *data, unsigned int xval)
 {
@@ -39,6 +51,8 @@ void	format_x(struct fields *fp, unsigned int xval)
 	width_diux(&data, fp);
 	if (fp->count == -1)
 		return ;
+	if (fp->conv_char == 'X')
+		str_toupper(data.a);
 	ft_putstr_fd(data.a, 1);
 	free(data.a);
 	return ;
