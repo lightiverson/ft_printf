@@ -6,7 +6,7 @@
 /*   By: kawish <kawish@student.codam.nl>             +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2021/01/09 10:17:02 by kawish        #+#    #+#                 */
-/*   Updated: 2021/02/23 21:15:06 by kawish        ########   odam.nl         */
+/*   Updated: 2021/02/25 18:16:21 by kawish        ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -100,8 +100,12 @@ void		width_diux(t_data *data, struct fields *fp);
 ** utils.c
 */
 int			is_nonzerodigit(int c);
-void		*zalloc(size_t count, size_t size, char c);
 int			get_alnum(char *s);
+char		*str_toupper(char *str);
+
+/*
+** uitoa....c
+*/
 char		*uitoa(unsigned int n);
 char		*uitoa_hex(unsigned long n);
 
