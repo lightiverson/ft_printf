@@ -6,7 +6,7 @@
 /*   By: kawish <kawish@student.codam.nl>             +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2021/02/07 14:33:30 by kawish        #+#    #+#                 */
-/*   Updated: 2021/02/26 21:08:58 by kawish        ########   odam.nl         */
+/*   Updated: 2021/02/26 21:18:29 by kawish        ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -84,6 +84,12 @@ const char	*set_width(const char *p_fmt, va_list ap, struct fields *fp)
 const char	*set_fields(const char *p_fmt, va_list ap, struct fields *fp)
 {
 	p_fmt++;
+	if (*p_fmt == ' ')
+	{
+		write(1, " ", 1);
+		while (isspace(*p_fmt))
+			p_fmt++;
+	}
 	p_fmt = set_flags(p_fmt, fp);
 	p_fmt = set_width(p_fmt, ap, fp);
 	p_fmt = set_precision(p_fmt, ap, fp);

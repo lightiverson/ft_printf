@@ -257,8 +257,11 @@ int main (void)
 	// ft_printf(":%.d:\n", 5);
 	// ft_printf(":%.d:\n", 0);
 
-	printf(":%% *.5i 42 == |%       *.5i|:\n", 4, 42);
-	ft_printf(":%% *.5i 42 == |%*.5i|:\n", 4, 42);
+	// printf(":%% *.5i 42 == |% *.5i|:\n", 4, 42);
+	// ft_printf(":%% *.5i 42 == |% *.5i|:\n", 4, 42);
+	// ft_printf(":%% *.5i 42 == |%*.5i|:\n", 4, 42);
+
+	printf("ret = %d\n", ft_printf("%d", 42));
 
 	return (0);
 }
