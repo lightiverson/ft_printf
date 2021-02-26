@@ -6,7 +6,7 @@
 /*   By: kawish <kawish@student.codam.nl>             +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2021/02/09 14:39:10 by kawish        #+#    #+#                 */
-/*   Updated: 2021/02/11 11:49:54 by kawish        ########   odam.nl         */
+/*   Updated: 2021/02/26 10:27:54 by kawish        ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,7 +21,7 @@ void	format_c(struct fields *fp, char cval)
 	{
 		while (i < fp->width)
 		{
-			write(1, " ", 1);
+			write(1, &(fp->padding_char), 1);
 			i++;
 		}
 	}
@@ -30,7 +30,7 @@ void	format_c(struct fields *fp, char cval)
 	{
 		while (i < fp->width)
 		{
-			write(1, " ", 1);
+			write(1, &(fp->padding_char), 1);
 			i++;
 		}
 	}
