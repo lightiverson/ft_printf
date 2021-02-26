@@ -252,10 +252,13 @@ int main (void)
 	// printf(":%5p:\n", 0);
 	// ft_printf(":%5p:\n", 0);
 
-	printf(":%.2d:\n", 5);
+	// printf(":%.2d:\n", 5);
 	// printf(":%.d:\n", 0);
 	// ft_printf(":%.d:\n", 5);
 	// ft_printf(":%.d:\n", 0);
+
+	printf(":%% *.5i 42 == |%       *.5i|:\n", 4, 42);
+	ft_printf(":%% *.5i 42 == |%*.5i|:\n", 4, 42);
 
 	return (0);
 }
