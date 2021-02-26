@@ -6,7 +6,7 @@
 /*   By: kawish <kawish@student.codam.nl>             +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2021/02/05 14:55:01 by kawish        #+#    #+#                 */
-/*   Updated: 2021/02/25 18:12:44 by kawish        ########   odam.nl         */
+/*   Updated: 2021/02/26 19:33:25 by kawish        ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,4 +49,19 @@ char	*str_toupper(char *str)
 		i++;
 	}
 	return (str);
+}
+
+void	*zalloc(size_t count, size_t size, char c)
+{
+	void	*a;
+
+	if ((count == 0) || (size == 0))
+	{
+		count = 1;
+		size = 1;
+	}
+	a = malloc(count * size);
+	if (a)
+		ft_memset(a, c, count * size);
+	return (a);
 }

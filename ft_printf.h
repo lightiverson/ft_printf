@@ -6,7 +6,7 @@
 /*   By: kawish <kawish@student.codam.nl>             +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2021/01/09 10:17:02 by kawish        #+#    #+#                 */
-/*   Updated: 2021/02/25 18:50:01 by kawish        ########   odam.nl         */
+/*   Updated: 2021/02/26 19:37:59 by kawish        ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -107,6 +107,7 @@ void		width_diux(t_data *data, struct fields *fp);
 int			is_nonzerodigit(int c);
 int			get_alnum(char *s);
 char		*str_toupper(char *str);
+void		*zalloc(size_t count, size_t size, char c);
 
 /*
 ** uitoa....c

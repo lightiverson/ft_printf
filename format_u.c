@@ -6,7 +6,7 @@
 /*   By: kawish <kawish@student.codam.nl>             +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2021/02/11 12:04:32 by kawish        #+#    #+#                 */
-/*   Updated: 2021/02/23 12:37:01 by kawish        ########   odam.nl         */
+/*   Updated: 2021/02/26 19:02:03 by kawish        ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,7 +23,6 @@ void	get_data_u(struct fields *fp, t_data *data, unsigned int uval)
 	data->a_dup = data->a;
 	data->a_len = strlen(data->a);
 	data->a_digits = get_alnum(data->a);
-	return ;
 }
 
 void	format_u(struct fields *fp, unsigned int uval)
@@ -41,5 +40,4 @@ void	format_u(struct fields *fp, unsigned int uval)
 		return ;
 	ft_putstr_fd(data.a, 1);
 	free(data.a);
-	return ;
 }

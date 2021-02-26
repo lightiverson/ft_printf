@@ -5,58 +5,66 @@
 /*                                                     +:+                    */
 /*   By: kawish <kawish@student.codam.nl>             +#+                     */
 /*                                                   +#+                      */
-/*   Created: 2021/02/05 12:02:57 by kawish        #+#    #+#                 */
-/*   Updated: 2021/02/07 15:27:13 by kawish        ########   odam.nl         */
+/*   Created: 2021/02/26 18:50:57 by kawish        #+#    #+#                 */
+/*   Updated: 2021/02/26 19:31:31 by kawish        ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_printf.h"
 
-void		width_s(char *sval_dup, int sval_dup_len, struct fields *fp)
+void get_data_s(struct fields *fp, t_data *data, char *sval)
 {
-	int				i;
-	int				j;
-
-	i = 0;
-	j = 0;
-	if (fp->is_minus)
+	data->a = ft_strdup(sval);
+	if (!data->a)
 	{
-		ft_putstr_fd(sval_dup, 1);
-		while (j < (fp->width - sval_dup_len))
-		{
-			write(1, &fp->padding_char, 1);
-			j++;
-		}
+		fp->count = -1;
+		return ;
 	}
-	else
-	{
-		while (i < (fp->width - sval_dup_len))
-		{
-			write(1, &fp->padding_char, 1);
-			i++;
-		}
-		ft_putstr_fd(sval_dup, 1);
-	}
-	fp->count = fp->count + strlen(sval_dup) + (fp->width - sval_dup_len);
+	data->a_len = strlen(data->a);
 }
 
-void		format_s(struct fields *fp, char *sval)
+void precision_s(struct fields *fp, t_data *data)
 {
-	char			sval_dup[strlen(sval) + 1];
-	int				sval_dup_len;
+	if (fp->precision >= 0 && fp->precision < (int)data->a_len)
+	{
+		data->a[fp->precision] = '\0';
+		data->a_len = strlen(data->a);
+	}
+}
 
-	strlcpy(sval_dup, sval, sizeof(sval_dup));
-	sval_dup_len = strlen(sval_dup);
-	if (((fp->precision >= 0) && (fp->precision < sval_dup_len)))
+void width_s(struct fields *fp, t_data *data)
+{
+	if (fp->width > (int)data->a_len)
 	{
-		sval_dup[fp->precision] = '\0';
-		sval_dup_len = strlen(sval_dup);
+		data->b = zalloc(fp->width + data->a_len + 1, sizeof(*(data->b)), fp->padding_char);
+		if (!data->b)
+		{
+			fp->count = -1;
+			return ;
+		}
+		data->b_dup = data->b;
+		if (fp->is_minus)
+			memcpy(data->b_dup, data->a, data->a_len);
+		else
+			memcpy(data->b_dup + (fp->width - data->a_len), data->a, data->a_len);
+		data->b[fp->width] = '\0';
+		free(data->a);
+		data->a = data->b;
+		data->a_len = strlen(data->a);
 	}
-	if (sval_dup_len < fp->width)
-		width_s(sval_dup, sval_dup_len, fp);
-	else
-	{
-		ft_putstr_fd(sval_dup, 1);
-		fp->count = fp->count + strlen(sval_dup);
-	}
+}
+
+void format_s(struct fields *fp, char *sval)
+{
+	t_data data;
+
+	get_data_s(fp, &data, sval);
+	if (fp->count == -1)
+		return;
+	precision_s(fp, &data);
+	width_s(fp, &data);
+	if (fp->count == -1)
+		return;
+	ft_putstr_fd(data.a, 1);
+	free(data.a);
 }

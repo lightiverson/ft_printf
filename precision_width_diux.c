@@ -6,7 +6,7 @@
 /*   By: kawish <kawish@student.codam.nl>             +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2021/02/23 12:56:31 by kawish        #+#    #+#                 */
-/*   Updated: 2021/02/25 18:08:24 by kawish        ########   odam.nl         */
+/*   Updated: 2021/02/26 19:33:36 by kawish        ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,21 +17,6 @@
 ** checks if malloc has worked,
 ** and fills the malloced array with CHAR C.
 */
-
-static void	*zalloc(size_t count, size_t size, char c)
-{
-	void	*a;
-
-	if ((count == 0) || (size == 0))
-	{
-		count = 1;
-		size = 1;
-	}
-	a = malloc(count * size);
-	if (a)
-		ft_memset(a, c, count * size);
-	return (a);
-}
 
 static void	diux_nega_helper(t_data *data)
 {
