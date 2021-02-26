@@ -250,7 +250,12 @@ int main (void)
 	// ft_printf(":%p:\n", &x);
 
 	// printf(":%5p:\n", 0);
-	ft_printf(":%5p:\n", 0);
+	// ft_printf(":%5p:\n", 0);
+
+	printf(":%.2d:\n", 5);
+	// printf(":%.d:\n", 0);
+	// ft_printf(":%.d:\n", 5);
+	// ft_printf(":%.d:\n", 0);
 
 	return (0);
 }

@@ -6,7 +6,7 @@
 /*   By: kawish <kawish@student.codam.nl>             +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2021/01/24 14:35:22 by kawish        #+#    #+#                 */
-/*   Updated: 2021/02/26 10:23:17 by kawish        ########   odam.nl         */
+/*   Updated: 2021/02/26 12:13:41 by kawish        ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,7 +38,7 @@ void		format(va_list ap, struct fields *fp)
 		else
 			format_s(fp, sval);
 	}
-	else if (fp->conv_char == 'd')
+	else if (fp->conv_char == 'd' || fp->conv_char == 'i')
 	{
 		dval = va_arg(ap, int);
 		format_d(fp, dval);
