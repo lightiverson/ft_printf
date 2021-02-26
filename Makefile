@@ -6,7 +6,7 @@
 #    By: kawish <kawish@student.codam.nl>             +#+                      #
 #                                                    +#+                       #
 #    Created: 2021/01/09 09:52:36 by kawish        #+#    #+#                  #
-#    Updated: 2021/02/23 12:52:06 by kawish        ########   odam.nl          #
+#    Updated: 2021/02/26 09:55:31 by kawish        ########   odam.nl          #
 #                                                                              #
 # **************************************************************************** #
 
@@ -18,6 +18,7 @@ OBJ_FILES = ft_printf.o \
 			format_d.o \
 			format_u.o \
 			format_x.o \
+			format_p.o \
 			utils.o \
 			uitoa.o \
 			uitoa_hex.o \

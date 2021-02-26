@@ -227,7 +227,6 @@ int main (void)
 	// printf(":%.4x:\n", 5263);
 	// ft_printf(":%.4x:\n", 5263);
 	
-
 	// printf(":%x:\n", 17);
 	// ft_printf(":%x:\n", 0);
 	// ft_printf(":%x:\n", 17);
@@ -242,7 +241,16 @@ int main (void)
 	// ft_printf(":%x:\n", 4294967295u);
 
 	// printf(":%5X:\n", 52625);
-	ft_printf(":%5X:\n", 52625);
+	// ft_printf(":%5X:\n", 52625);
+
+	// unsigned long x = 4;
+	// printf(":%p:\n", &x);
+	// printf(":%x:\n", &x);
+	// printf(":%p:\n", &x);
+	// ft_printf(":%p:\n", &x);
+
+	// printf(":%5p:\n", 0);
+	ft_printf(":%5p:\n", 0);
 
 	return (0);
 }
