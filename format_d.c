@@ -6,7 +6,7 @@
 /*   By: kawish <kawish@student.codam.nl>             +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2021/02/05 14:51:41 by kawish        #+#    #+#                 */
-/*   Updated: 2021/02/26 21:36:59 by kawish        ########   odam.nl         */
+/*   Updated: 2021/02/26 21:50:02 by kawish        ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,6 +39,6 @@ void	format_d(struct fields *fp, int dval)
 	if (fp->count == -1)
 		return ;
 	ft_putstr_fd(data.a, 1);
-	fp->count = data.a_len;
+	fp->count = fp->count + data.a_len;
 	free(data.a);
 }

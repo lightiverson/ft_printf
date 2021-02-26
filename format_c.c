@@ -6,13 +6,13 @@
 /*   By: kawish <kawish@student.codam.nl>             +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2021/02/09 14:39:10 by kawish        #+#    #+#                 */
-/*   Updated: 2021/02/26 10:27:54 by kawish        ########   odam.nl         */
+/*   Updated: 2021/02/26 22:01:41 by kawish        ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_printf.h"
 
-void	format_c(struct fields *fp, char cval)
+void	format_c(struct fields *fp, unsigned char cval)
 {
 	int i;
 

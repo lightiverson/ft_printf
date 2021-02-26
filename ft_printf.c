@@ -6,7 +6,7 @@
 /*   By: kawish <kawish@student.codam.nl>             +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2021/01/24 14:35:22 by kawish        #+#    #+#                 */
-/*   Updated: 2021/02/26 21:15:47 by kawish        ########   odam.nl         */
+/*   Updated: 2021/02/26 22:03:34 by kawish        ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,9 +24,9 @@ void		init_fields(struct fields *fp)
 
 void		format(va_list ap, struct fields *fp)
 {
-	char			*sval;
+	const char			*sval;
 	int				dval;
-	char			cval;
+	unsigned char	cval;
 	unsigned int	uval;
 	unsigned long	pval;
 
@@ -67,7 +67,6 @@ void		format(va_list ap, struct fields *fp)
 	{
 		format_c(fp, '%');
 	}
-	
 }
 
 void		interate_fmt(const char *fmt, va_list ap, struct fields *fp)

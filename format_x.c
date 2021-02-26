@@ -6,7 +6,7 @@
 /*   By: kawish <kawish@student.codam.nl>             +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2021/02/20 20:50:23 by kawish        #+#    #+#                 */
-/*   Updated: 2021/02/26 21:38:41 by kawish        ########   odam.nl         */
+/*   Updated: 2021/02/26 21:51:31 by kawish        ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,6 +41,6 @@ void	format_x(struct fields *fp, unsigned int xval)
 	if (fp->conv_char == 'X')
 		data.a = str_toupper(data.a);
 	ft_putstr_fd(data.a, 1);
-	fp->count = data.a_len;
+	fp->count = fp->count + data.a_len;
 	free(data.a);
 }

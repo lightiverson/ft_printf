@@ -6,7 +6,7 @@
 /*   By: kawish <kawish@student.codam.nl>             +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2021/01/09 10:17:02 by kawish        #+#    #+#                 */
-/*   Updated: 2021/02/26 20:55:23 by kawish        ########   odam.nl         */
+/*   Updated: 2021/02/26 22:04:59 by kawish        ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -68,12 +68,12 @@ const char	*set_fields(const char *p_fmt, va_list ap, struct fields *fp);
 /*
 ** format_s.c
 */
-void		format_s(struct fields *fp, char *sval);
+void		format_s(struct fields *fp, const char *sval);
 
 /*
 ** format_c.c
 */
-void		format_c(struct fields *fp, char cval);
+void		format_c(struct fields *fp, unsigned char cval);
 
 /*
 ** format_d.c

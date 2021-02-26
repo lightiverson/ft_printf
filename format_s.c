@@ -6,13 +6,13 @@
 /*   By: kawish <kawish@student.codam.nl>             +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2021/02/26 18:50:57 by kawish        #+#    #+#                 */
-/*   Updated: 2021/02/26 21:37:57 by kawish        ########   odam.nl         */
+/*   Updated: 2021/02/26 22:05:23 by kawish        ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_printf.h"
 
-void get_data_s(struct fields *fp, t_data *data, char *sval)
+void get_data_s(struct fields *fp, t_data *data, const char *sval)
 {
 	data->a = ft_strdup(sval);
 	if (!data->a)
@@ -54,7 +54,7 @@ void width_s(struct fields *fp, t_data *data)
 	}
 }
 
-void format_s(struct fields *fp, char *sval)
+void format_s(struct fields *fp, const char *sval)
 {
 	t_data data;
 
@@ -66,6 +66,6 @@ void format_s(struct fields *fp, char *sval)
 	if (fp->count == -1)
 		return;
 	ft_putstr_fd(data.a, 1);
-	fp->count = data.a_len;
+	fp->count = fp->count + data.a_len;
 	free(data.a);
 }
