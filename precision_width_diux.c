@@ -6,7 +6,7 @@
 /*   By: kawish <kawish@student.codam.nl>             +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2021/02/23 12:56:31 by kawish        #+#    #+#                 */
-/*   Updated: 2021/02/26 19:33:36 by kawish        ########   odam.nl         */
+/*   Updated: 2021/02/28 17:01:32 by kawish        ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,7 +45,7 @@ void		precision_diux(struct fields *fp, t_data *data)
 		data->a = data->b;
 		data->a_dup = data->a;
 	}
-	else if (fp->precision == 0 && *data->a == '0')
+	else if (fp->precision == 0 && (*data->a == '0' && data->a[1] == '\0'))
 		data->a[0] = '\0';
 	data->a_len = strlen(data->a);
 }

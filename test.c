@@ -261,7 +261,11 @@ int main (void)
 	// ft_printf(":%% *.5i 42 == |% *.5i|:\n", 4, 42);
 	// ft_printf(":%% *.5i 42 == |%*.5i|:\n", 4, 42);
 
-	printf("ret = %d\n", ft_printf("%d", 42));
+	printf(":%.p:\n", NULL);
+	ft_printf(":%.p:\n", NULL);
+
+	printf(":%.p:\n", 0);
+	ft_printf(":%.p:\n", 0);
 
 	return (0);
 }

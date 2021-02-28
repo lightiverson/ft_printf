@@ -6,7 +6,7 @@
 /*   By: kawish <kawish@student.codam.nl>             +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2021/02/25 18:51:38 by kawish        #+#    #+#                 */
-/*   Updated: 2021/02/26 21:51:31 by kawish        ########   odam.nl         */
+/*   Updated: 2021/02/28 17:04:20 by kawish        ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,6 +14,8 @@
 
 void	prepend_0x(struct fields *fp, t_data *data)
 {
+	if (*data->a == '0' && fp->precision != -1)
+		*data->a = '\0';
 	data->b = ft_strjoin("0x", data->a);
 	if (!data->b)
 	{
