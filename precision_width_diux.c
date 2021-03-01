@@ -6,7 +6,7 @@
 /*   By: kawish <kawish@student.codam.nl>             +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2021/02/23 12:56:31 by kawish        #+#    #+#                 */
-/*   Updated: 2021/02/28 17:01:32 by kawish        ########   odam.nl         */
+/*   Updated: 2021/02/28 21:21:37 by kawish        ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,8 +38,7 @@ void		precision_diux(struct fields *fp, t_data *data)
 		data->b_dup = data->b;
 		if (*data->a == '-')
 			diux_nega_helper(data);
-		memcpy(data->b_dup + (fp->precision - data->a_digits),
-			data->a_dup, strlen(data->b_dup));
+		memcpy(data->b_dup + (fp->precision - data->a_digits), data->a_dup, strlen(data->a_dup));
 		data->b_dup[fp->precision] = '\0';
 		free(data->a);
 		data->a = data->b;

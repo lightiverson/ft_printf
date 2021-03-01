@@ -6,7 +6,7 @@
 /*   By: kawish <kawish@student.codam.nl>             +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2021/01/24 14:35:22 by kawish        #+#    #+#                 */
-/*   Updated: 2021/02/28 16:54:14 by kawish        ########   odam.nl         */
+/*   Updated: 2021/02/28 22:37:49 by kawish        ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,6 +15,15 @@
 void		init_fields(struct fields *fp)
 {
 	fp->count = 0;
+	fp->is_minus = 0;
+	fp->padding_char = ' ';
+	fp->width = 0;
+	fp->precision = -1;
+	fp->conv_char = '\0';
+}
+
+void		reset_fields(struct fields *fp)
+{
 	fp->is_minus = 0;
 	fp->padding_char = ' ';
 	fp->width = 0;
@@ -86,6 +95,7 @@ void		interate_fmt(const char *fmt, va_list ap, struct fields *fp)
 		{
 			p_fmt = set_fields(p_fmt, ap, fp);
 			format(ap, fp);
+			reset_fields(fp);
 		}
 		p_fmt++;
 	}

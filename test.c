@@ -261,11 +261,34 @@ int main (void)
 	// ft_printf(":%% *.5i 42 == |% *.5i|:\n", 4, 42);
 	// ft_printf(":%% *.5i 42 == |%*.5i|:\n", 4, 42);
 
-	printf(":%.p:\n", NULL);
-	ft_printf(":%.p:\n", NULL);
+	int		a = -4;
+	int		b = 0;
+	char	c = 'a';
+	int		d = 2147483647;
+	int		e = -2147483648;
+	int		f = 42;
+	int		g = 25;
+	int		h = 4200;
+	int		i = 8;
+	int		j = -12;
+	int		k = 123456789;
+	int		l = 0;
+	int		m = -12345678;
+	char	*n = "abcdefghijklmnop";
+	char	*o = "-a";
+	char	*p = "-12";
+	char	*q = "0";
+	char	*r = "%%";
+	char	*s = "-2147483648";
+	char	*t = "0x12345678";
+	char	*u = "-0";
 
-	printf(":%.p:\n", 0);
-	ft_printf(":%.p:\n", 0);
+	a = 19;
+	b = 14;
+	a = 19;
+	b = 14;
+	printf(":%*.*i, %*.*d, %*.*d, %*.*d, %*.*d, %*.*d, %*.*d, %*.*d:\n", a, b, -42, a, b, 42, -a, -b, -42, -a, -b, 42, -a, b, -42, -a, b, 42, a, -b, -42, a, -b, 42); //T178
+	ft_printf(":%*.*i, %*.*d, %*.*d, %*.*d, %*.*d, %*.*d, %*.*d, %*.*d:\n", a, b, -42, a, b, 42, -a, -b, -42, -a, -b, 42, -a, b, -42, -a, b, 42, a, -b, -42, a, -b, 42); //T178
 
 	return (0);
 }
