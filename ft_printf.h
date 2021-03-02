@@ -6,7 +6,7 @@
 /*   By: kawish <kawish@student.codam.nl>             +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2021/01/09 10:17:02 by kawish        #+#    #+#                 */
-/*   Updated: 2021/03/02 12:51:31 by kgajadie      ########   odam.nl         */
+/*   Updated: 2021/03/02 13:05:17 by kgajadie      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -85,16 +85,12 @@ void		format_u(struct fields *fp, unsigned int uval);
 */
 void		format_x(struct fields *fp, unsigned int xval);
 
-/*
-** format_p.c
-*/
+/* format_p.c */
 void		format_p(struct fields *fp, unsigned long pval);
 
-/*
-** precision_width_diux.c
-*/
-void		precision_diux(struct fields *fp, t_data *data);
-void		width_diux(t_data *data, struct fields *fp);
+/* precision_width_diuxp.c */
+void		precision_diuxp(struct fields *fp, t_data *data);
+void		width_diuxp(t_data *data, struct fields *fp);
 
 /*
 ** utils.c

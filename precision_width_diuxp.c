@@ -6,7 +6,7 @@
 /*   By: kawish <kawish@student.codam.nl>             +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2021/02/23 12:56:31 by kawish        #+#    #+#                 */
-/*   Updated: 2021/03/02 12:33:40 by kgajadie      ########   odam.nl         */
+/*   Updated: 2021/03/02 12:56:39 by kgajadie      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,13 +18,13 @@
 ** and fills the malloced array with CHAR C.
 */
 
-static void	diux_nega_helper(t_data *data)
+static void	diuxp_nega_helper(t_data *data)
 {
 	*data->b_dup++ = '-';
 	data->a_dup++;
 }
 
-void	precision_diux(struct fields *fp, t_data *data)
+void	precision_diuxp(struct fields *fp, t_data *data)
 {
 	if (fp->precision >= 0 && data->a_digits < fp->precision)
 	{
@@ -37,7 +37,7 @@ void	precision_diux(struct fields *fp, t_data *data)
 		}
 		data->b_dup = data->b;
 		if (*data->a == '-')
-			diux_nega_helper(data);
+			diuxp_nega_helper(data);
 		memcpy(data->b_dup + (fp->precision - data->a_digits), data->a_dup,
 				strlen(data->a_dup));
 		data->b_dup[fp->precision] = '\0';
@@ -50,7 +50,7 @@ void	precision_diux(struct fields *fp, t_data *data)
 	data->a_len = strlen(data->a);
 }
 
-void	width_diux(t_data *data, struct fields *fp)
+void	width_diuxp(t_data *data, struct fields *fp)
 {
 	if ((int)data->a_len < fp->width)
 	{
@@ -67,7 +67,7 @@ void	width_diux(t_data *data, struct fields *fp)
 		else
 		{
 			if (*data->a == '-' && fp->padding_char == '0')
-				diux_nega_helper(data);
+				diuxp_nega_helper(data);
 			memcpy(data->b_dup + (fp->width - data->a_len),
 				data->a_dup, strlen(data->a_dup));
 		}

@@ -6,7 +6,7 @@
 #    By: kawish <kawish@student.codam.nl>             +#+                      #
 #                                                    +#+                       #
 #    Created: 2021/01/09 09:52:36 by kawish        #+#    #+#                  #
-#    Updated: 2021/03/02 11:28:34 by kgajadie      ########   odam.nl          #
+#    Updated: 2021/03/02 13:12:06 by kgajadie      ########   odam.nl          #
 #                                                                              #
 # **************************************************************************** #
 
@@ -22,7 +22,7 @@ OBJ_FILES = ft_printf.o \
 			utils.o \
 			uitoa.o \
 			uitoa_hex.o \
-			precision_width_diux.o
+			precision_width_diuxp.o
 
 HEADER_FILE = ft_printf.h
 CFLAGS = -Wall -Wextra -Werror
