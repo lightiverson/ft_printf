@@ -6,7 +6,7 @@
 /*   By: kawish <kawish@student.codam.nl>             +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2021/01/09 10:17:02 by kawish        #+#    #+#                 */
-/*   Updated: 2021/03/02 13:05:17 by kgajadie      ########   odam.nl         */
+/*   Updated: 2021/03/02 13:30:57 by kgajadie      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,6 +25,8 @@
 ** Struct to handle %d, %u.
 ** Zoek nog uit wat deze syntax precies doet.
 */
+
+/* Struct to unify data needed to handle %d, %i, %u, %U, %p, %x */
 
 typedef struct s_data
 {
