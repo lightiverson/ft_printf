@@ -6,7 +6,7 @@
 /*   By: kawish <kawish@student.codam.nl>             +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2021/02/20 20:50:23 by kawish        #+#    #+#                 */
-/*   Updated: 2021/02/26 21:51:31 by kawish        ########   odam.nl         */
+/*   Updated: 2021/03/02 11:41:40 by kgajadie      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,7 +27,7 @@ void	get_data_x(struct fields *fp, t_data *data, unsigned int xval)
 
 void	format_x(struct fields *fp, unsigned int xval)
 {
-	t_data data;
+	t_data	data;
 
 	get_data_x(fp, &data, xval);
 	if (fp->count == -1)

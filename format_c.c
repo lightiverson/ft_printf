@@ -6,7 +6,7 @@
 /*   By: kawish <kawish@student.codam.nl>             +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2021/02/09 14:39:10 by kawish        #+#    #+#                 */
-/*   Updated: 2021/02/26 22:01:41 by kawish        ########   odam.nl         */
+/*   Updated: 2021/03/02 11:35:34 by kgajadie      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,7 @@
 
 void	format_c(struct fields *fp, unsigned char cval)
 {
-	int i;
+	int	i;
 
 	i = 1;
 	if (!fp->is_minus)

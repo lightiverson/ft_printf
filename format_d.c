@@ -6,7 +6,7 @@
 /*   By: kawish <kawish@student.codam.nl>             +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2021/02/05 14:51:41 by kawish        #+#    #+#                 */
-/*   Updated: 2021/02/26 21:50:02 by kawish        ########   odam.nl         */
+/*   Updated: 2021/03/02 11:35:53 by kgajadie      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,7 +27,7 @@ void	get_data_d(struct fields *fp, t_data *data, int dval)
 
 void	format_d(struct fields *fp, int dval)
 {
-	t_data data;
+	t_data	data;
 
 	get_data_d(fp, &data, dval);
 	if (fp->count == -1)

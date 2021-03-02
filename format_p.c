@@ -6,7 +6,7 @@
 /*   By: kawish <kawish@student.codam.nl>             +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2021/02/25 18:51:38 by kawish        #+#    #+#                 */
-/*   Updated: 2021/02/28 17:04:20 by kawish        ########   odam.nl         */
+/*   Updated: 2021/03/02 11:36:06 by kgajadie      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,7 +43,7 @@ void	get_data_p(struct fields *fp, t_data *data, unsigned long pval)
 
 void	format_p(struct fields *fp, unsigned long pval)
 {
-	t_data data;
+	t_data	data;
 
 	get_data_p(fp, &data, pval);
 	if (fp->count == -1)
