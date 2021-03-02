@@ -6,7 +6,7 @@
 /*   By: kgajadie <kgajadie@student.codam.nl>         +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2020/11/22 12:02:05 by kgajadie      #+#    #+#                 */
-/*   Updated: 2021/02/23 11:19:57 by kawish        ########   odam.nl         */
+/*   Updated: 2021/03/02 12:39:26 by kgajadie      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,9 +27,9 @@ static	unsigned int	ft_int2pwr(int x, int n)
 	return (result);
 }
 
-static	size_t			ft_intlen(unsigned int n)
+static	size_t	ft_intlen(unsigned int n)
 {
-	size_t len;
+	size_t	len;
 
 	len = 1;
 	if (n < 0)
@@ -45,7 +45,7 @@ static	size_t			ft_intlen(unsigned int n)
 	return (len);
 }
 
-char					*uitoa(unsigned int n)
+char	*uitoa(unsigned int n)
 {
 	unsigned int	i;
 	size_t			len;

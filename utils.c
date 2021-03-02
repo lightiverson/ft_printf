@@ -6,7 +6,7 @@
 /*   By: kawish <kawish@student.codam.nl>             +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2021/02/05 14:55:01 by kawish        #+#    #+#                 */
-/*   Updated: 2021/02/26 19:33:25 by kawish        ########   odam.nl         */
+/*   Updated: 2021/03/02 12:37:38 by kgajadie      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,7 +16,7 @@
 ** is_nonzerodigit: checkt of c een digit is, behalve 0, inclusief - teken
 */
 
-int		is_nonzerodigit(int c)
+int	is_nonzerodigit(int c)
 {
 	if ((c >= '1' && c <= '9') || (c == '-'))
 		return (1);
@@ -24,9 +24,9 @@ int		is_nonzerodigit(int c)
 		return (0);
 }
 
-int		get_alnum(char *s)
+int	get_alnum(char *s)
 {
-	int i;
+	int	i;
 
 	i = 0;
 	while (*s)
@@ -40,7 +40,7 @@ int		get_alnum(char *s)
 
 char	*str_toupper(char *str)
 {
-	int i;
+	int	i;
 
 	i = 0;
 	while (str[i] != '\0')

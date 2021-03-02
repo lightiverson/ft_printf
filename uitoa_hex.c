@@ -6,15 +6,15 @@
 /*   By: kawish <kawish@student.codam.nl>             +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2021/02/23 11:36:09 by kawish        #+#    #+#                 */
-/*   Updated: 2021/02/23 21:24:08 by kawish        ########   odam.nl         */
+/*   Updated: 2021/03/02 12:49:38 by kgajadie      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_printf.h"
 
-static int				get_no_of_digits(unsigned long n)
+static int	get_no_of_digits(unsigned long n)
 {
-	int i;
+	int	i;
 
 	i = 1;
 	while (n > 15)
@@ -42,8 +42,8 @@ static unsigned long	ui_pow(int base, int exponent)
 
 static unsigned long	get_largest_exponent(unsigned long n)
 {
-	unsigned long i;
-	unsigned long y;
+	unsigned long	i;
+	unsigned long	y;
 
 	i = 1;
 	y = n;
@@ -53,7 +53,12 @@ static unsigned long	get_largest_exponent(unsigned long n)
 	return (i);
 }
 
-char					*uitoa_hex(unsigned long n)
+/* 
+2 regels te veel
+ga er doorheen met debugger
+kijk of er een andere conditional gebruikt kan woorden dan i
+*/
+char	*uitoa_hex(unsigned long n)
 {
 	int				i;
 	unsigned long	y;

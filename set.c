@@ -6,13 +6,13 @@
 /*   By: kawish <kawish@student.codam.nl>             +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2021/02/07 14:33:30 by kawish        #+#    #+#                 */
-/*   Updated: 2021/02/26 21:18:29 by kawish        ########   odam.nl         */
+/*   Updated: 2021/03/02 12:38:41 by kgajadie      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_printf.h"
 
-const char	*set_flags(const char *p_fmt, struct fields *fp)
+static	const char	*set_flags(const char *p_fmt, struct fields *fp)
 {
 	while (*p_fmt == '-' || *p_fmt == '0')
 	{
@@ -25,9 +25,9 @@ const char	*set_flags(const char *p_fmt, struct fields *fp)
 	return (p_fmt);
 }
 
-const char	*set_precision(const char *p_fmt, va_list ap, struct fields *fp)
+static	const char	*set_precision(const char *p_fmt, va_list ap, struct fields *fp)
 {
-	int i;
+	int	i;
 
 	if (*p_fmt == '.')
 	{
@@ -52,9 +52,9 @@ const char	*set_precision(const char *p_fmt, va_list ap, struct fields *fp)
 	return (p_fmt);
 }
 
-const char	*set_width(const char *p_fmt, va_list ap, struct fields *fp)
+static	const char	*set_width(const char *p_fmt, va_list ap, struct fields *fp)
 {
-	int x;
+	int	x;
 
 	if (*p_fmt == '*')
 	{
@@ -97,9 +97,9 @@ const char	*set_fields(const char *p_fmt, va_list ap, struct fields *fp)
 	if (fp->padding_char == '0' && fp->is_minus)
 		fp->padding_char = ' ';
 	if (fp->padding_char == '0' && (fp->precision > -1 && (
-		fp->conv_char == 'd' || fp->conv_char == 'u' ||
-		fp->conv_char == 'x' || fp->conv_char == 'X' ||
-		fp->conv_char == 'p' || fp->conv_char == 'i')))
+				fp->conv_char == 'd' || fp->conv_char == 'u'
+				|| fp->conv_char == 'x' || fp->conv_char == 'X'
+				|| fp->conv_char == 'p' || fp->conv_char == 'i')))
 	{
 		fp->padding_char = ' ';
 	}

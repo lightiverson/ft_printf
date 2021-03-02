@@ -6,7 +6,7 @@
 /*   By: kawish <kawish@student.codam.nl>             +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2021/01/09 10:17:02 by kawish        #+#    #+#                 */
-/*   Updated: 2021/02/26 22:04:59 by kawish        ########   odam.nl         */
+/*   Updated: 2021/03/02 12:51:31 by kgajadie      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -57,12 +57,7 @@ struct		fields
 */
 int			ft_printf(const char *fmt, ...);
 
-/*
-** set.c
-*/
-const char	*set_flags(const char *p_fmt, struct fields *fp);
-const char	*set_precision(const char *p_fmt, va_list ap, struct fields *fp);
-const char	*set_width(const char *p_fmt, va_list ap, struct fields *fp);
+/* set.c  */
 const char	*set_fields(const char *p_fmt, va_list ap, struct fields *fp);
 
 /*
