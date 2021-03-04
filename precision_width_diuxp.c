@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        ::::::::            */
-/*   precision_width_diux.c                             :+:    :+:            */
+/*   precision_width_diuxp.c                            :+:    :+:            */
 /*                                                     +:+                    */
 /*   By: kawish <kawish@student.codam.nl>             +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2021/02/23 12:56:31 by kawish        #+#    #+#                 */
-/*   Updated: 2021/03/02 12:56:39 by kgajadie      ########   odam.nl         */
+/*   Updated: 2021/03/04 10:50:16 by kawish        ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,54 +24,54 @@ static void	diuxp_nega_helper(t_data *data)
 	data->a_dup++;
 }
 
-void	precision_diuxp(struct fields *fp, t_data *data)
+void	precision_diuxp(t_fields *fields, t_data *data)
 {
-	if (fp->precision >= 0 && data->a_digits < fp->precision)
+	if (fields->precision >= 0 && data->a_digits < fields->precision)
 	{
-		data->b = zalloc(fp->precision + data->a_len + 1,
+		data->b = zalloc(fields->precision + data->a_len + 1,
 				sizeof(*(data->b)), '0');
 		if (!data->b)
 		{
-			fp->count = -1;
+			fields->count = -1;
 			return ;
 		}
 		data->b_dup = data->b;
 		if (*data->a == '-')
 			diuxp_nega_helper(data);
-		memcpy(data->b_dup + (fp->precision - data->a_digits), data->a_dup,
+		memcpy(data->b_dup + (fields->precision - data->a_digits), data->a_dup,
 				strlen(data->a_dup));
-		data->b_dup[fp->precision] = '\0';
+		data->b_dup[fields->precision] = '\0';
 		free(data->a);
 		data->a = data->b;
 		data->a_dup = data->a;
 	}
-	else if (fp->precision == 0 && (*data->a == '0' && data->a[1] == '\0'))
+	else if (fields->precision == 0 && (*data->a == '0' && data->a[1] == '\0'))
 		data->a[0] = '\0';
 	data->a_len = strlen(data->a);
 }
 
-void	width_diuxp(t_data *data, struct fields *fp)
+void	width_diuxp(t_data *data, t_fields *fields)
 {
-	if ((int)data->a_len < fp->width)
+	if ((int)data->a_len < fields->width)
 	{
-		data->b = zalloc(fp->width + data->a_len + 1,
-				sizeof(*(data->b)), fp->padding_char);
+		data->b = zalloc(fields->width + data->a_len + 1,
+				sizeof(*(data->b)), fields->padding_char);
 		if (!data->b)
 		{
-			fp->count = -1;
+			fields->count = -1;
 			return ;
 		}
 		data->b_dup = data->b;
-		if (fp->is_minus)
+		if (fields->is_minus)
 			memcpy(data->b_dup, data->a, data->a_len);
 		else
 		{
-			if (*data->a == '-' && fp->padding_char == '0')
+			if (*data->a == '-' && fields->padding_char == '0')
 				diuxp_nega_helper(data);
-			memcpy(data->b_dup + (fp->width - data->a_len),
+			memcpy(data->b_dup + (fields->width - data->a_len),
 				data->a_dup, strlen(data->a_dup));
 		}
-		data->b[fp->width] = '\0';
+		data->b[fields->width] = '\0';
 		free(data->a);
 		data->a = data->b;
 		data->a_len = strlen(data->a);

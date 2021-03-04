@@ -6,18 +6,18 @@
 /*   By: kawish <kawish@student.codam.nl>             +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2021/02/20 20:50:23 by kawish        #+#    #+#                 */
-/*   Updated: 2021/03/02 13:04:51 by kgajadie      ########   odam.nl         */
+/*   Updated: 2021/03/04 10:48:34 by kawish        ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_printf.h"
 
-void	get_data_x(struct fields *fp, t_data *data, unsigned int xval)
+void	get_data_x(t_fields *fields, t_data *data, unsigned int xval)
 {
 	data->a = uitoa_hex(xval);
 	if (!data->a)
 	{
-		fp->count = -1;
+		fields->count = -1;
 		return ;
 	}
 	data->a_dup = data->a;
@@ -25,22 +25,22 @@ void	get_data_x(struct fields *fp, t_data *data, unsigned int xval)
 	data->a_digits = get_alnum(data->a);
 }
 
-void	format_x(struct fields *fp, unsigned int xval)
+void	format_x(t_fields *fields, unsigned int xval)
 {
 	t_data	data;
 
-	get_data_x(fp, &data, xval);
-	if (fp->count == -1)
+	get_data_x(fields, &data, xval);
+	if (fields->count == -1)
 		return ;
-	precision_diuxp(fp, &data);
-	if (fp->count == -1)
+	precision_diuxp(fields, &data);
+	if (fields->count == -1)
 		return ;
-	width_diuxp(&data, fp);
-	if (fp->count == -1)
+	width_diuxp(&data, fields);
+	if (fields->count == -1)
 		return ;
-	if (fp->conv_char == 'X')
+	if (fields->conv_char == 'X')
 		data.a = str_toupper(data.a);
 	ft_putstr_fd(data.a, 1);
-	fp->count = fp->count + data.a_len;
+	fields->count = fields->count + data.a_len;
 	free(data.a);
 }

@@ -6,18 +6,18 @@
 /*   By: kawish <kawish@student.codam.nl>             +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2021/02/11 12:04:32 by kawish        #+#    #+#                 */
-/*   Updated: 2021/03/02 13:04:51 by kgajadie      ########   odam.nl         */
+/*   Updated: 2021/03/04 10:48:04 by kawish        ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_printf.h"
 
-void	get_data_u(struct fields *fp, t_data *data, unsigned int uval)
+void	get_data_u(t_fields *fields, t_data *data, unsigned int uval)
 {
 	data->a = uitoa(uval);
 	if (!data->a)
 	{
-		fp->count = -1;
+		fields->count = -1;
 		return ;
 	}
 	data->a_dup = data->a;
@@ -25,20 +25,20 @@ void	get_data_u(struct fields *fp, t_data *data, unsigned int uval)
 	data->a_digits = get_alnum(data->a);
 }
 
-void	format_u(struct fields *fp, unsigned int uval)
+void	format_u(t_fields *fields, unsigned int uval)
 {
 	t_data	data;
 
-	get_data_u(fp, &data, uval);
-	if (fp->count == -1)
+	get_data_u(fields, &data, uval);
+	if (fields->count == -1)
 		return ;
-	precision_diuxp(fp, &data);
-	if (fp->count == -1)
+	precision_diuxp(fields, &data);
+	if (fields->count == -1)
 		return ;
-	width_diuxp(&data, fp);
-	if (fp->count == -1)
+	width_diuxp(&data, fields);
+	if (fields->count == -1)
 		return ;
 	ft_putstr_fd(data.a, 1);
-	fp->count = fp->count + data.a_len;
+	fields->count = fields->count + data.a_len;
 	free(data.a);
 }
