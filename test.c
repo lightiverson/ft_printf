@@ -291,7 +291,9 @@ int main (void)
 	// ft_printf(":%*.*i, %*.*d, %*.*d, %*.*d, %*.*d, %*.*d, %*.*d, %*.*d:\n", a, b, -42, a, b, 42, -a, -b, -42, -a, -b, 42, -a, b, -42, -a, b, 42, a, -b, -42, a, -b, 42); //T178
 
 	// printf(":%2.9p:\n", 1234);
-	printf("%.5p", 0);
+	// printf("%.5p", 0);
+
+	ft_printf(":%x:\n", 17);
 
 	return (0);
 }
