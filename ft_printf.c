@@ -6,7 +6,7 @@
 /*   By: kawish <kawish@student.codam.nl>             +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2021/01/24 14:35:22 by kawish        #+#    #+#                 */
-/*   Updated: 2021/03/04 10:49:31 by kawish        ########   odam.nl         */
+/*   Updated: 2021/03/04 12:28:50 by kawish        ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -103,8 +103,8 @@ static	void	interate_fmt(const char *fmt, va_list ap, t_fields *fields)
 
 int	ft_printf(const char *fmt, ...)
 {
-	va_list			ap;
-	t_fields fields;
+	va_list		ap;
+	t_fields	fields;
 
 	va_start(ap, fmt);
 	interate_fmt(fmt, ap, &fields);

@@ -6,7 +6,7 @@
 /*   By: kawish <kawish@student.codam.nl>             +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2021/02/07 14:33:30 by kawish        #+#    #+#                 */
-/*   Updated: 2021/03/04 10:32:45 by kawish        ########   odam.nl         */
+/*   Updated: 2021/03/04 12:29:27 by kawish        ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,7 +25,8 @@ static	const char	*set_flags(const char *p_fmt, t_fields *fields)
 	return (p_fmt);
 }
 
-static	const char	*set_precision(const char *p_fmt, va_list ap, t_fields *fields)
+static	const char	*set_precision(const char *p_fmt, va_list ap,
+		t_fields *fields)
 {
 	int	i;
 

@@ -6,7 +6,7 @@
 /*   By: kawish <kawish@student.codam.nl>             +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2021/02/23 11:36:09 by kawish        #+#    #+#                 */
-/*   Updated: 2021/03/02 12:49:38 by kgajadie      ########   odam.nl         */
+/*   Updated: 2021/03/04 12:30:11 by kawish        ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -58,6 +58,7 @@ static unsigned long	get_largest_exponent(unsigned long n)
 ga er doorheen met debugger
 kijk of er een andere conditional gebruikt kan woorden dan i
 */
+
 char	*uitoa_hex(unsigned long n)
 {
 	int				i;
