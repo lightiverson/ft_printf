@@ -6,7 +6,7 @@
 /*   By: kawish <kawish@student.codam.nl>             +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2021/02/05 14:55:01 by kawish        #+#    #+#                 */
-/*   Updated: 2021/03/02 12:37:38 by kgajadie      ########   odam.nl         */
+/*   Updated: 2021/03/05 15:17:10 by kawish        ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,7 +31,7 @@ int	get_alnum(char *s)
 	i = 0;
 	while (*s)
 	{
-		if (isalnum(*s))
+		if (ft_isalnum(*s))
 			i++;
 		s++;
 	}
@@ -45,11 +45,17 @@ char	*str_toupper(char *str)
 	i = 0;
 	while (str[i] != '\0')
 	{
-		str[i] = toupper(str[i]);
+		str[i] = ft_toupper(str[i]);
 		i++;
 	}
 	return (str);
 }
+
+/*
+** zalloc: Custom function that mallocs,
+** checks if malloc has worked,
+** and fills the malloced array with CHAR C.
+*/
 
 void	*zalloc(size_t count, size_t size, char c)
 {

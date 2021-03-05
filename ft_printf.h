@@ -6,7 +6,7 @@
 /*   By: kawish <kawish@student.codam.nl>             +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2021/01/09 10:17:02 by kawish        #+#    #+#                 */
-/*   Updated: 2021/03/05 11:04:43 by kawish        ########   odam.nl         */
+/*   Updated: 2021/03/05 15:13:48 by kawish        ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,12 +14,7 @@
 # define FT_PRINTF_H
 
 # include "../libft/libft.h"
-# include <stdio.h>
 # include <stdarg.h>
-# include <string.h>
-# include <stdlib.h>
-# include <ctype.h>
-# include <stdbool.h>
 
 /* Struct to unify data needed to handle %d, %i, %u, %U, %p, %x */
 typedef struct s_data

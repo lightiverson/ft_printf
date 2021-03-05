@@ -6,7 +6,7 @@
 /*   By: kawish <kawish@student.codam.nl>             +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2021/02/26 18:50:57 by kawish        #+#    #+#                 */
-/*   Updated: 2021/03/04 10:41:39 by kawish        ########   odam.nl         */
+/*   Updated: 2021/03/05 15:15:44 by kawish        ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,7 +20,7 @@ void	get_data_s(t_fields *fields, t_data *data, const char *sval)
 		fields->count = -1;
 		return ;
 	}
-	data->a_len = strlen(data->a);
+	data->a_len = ft_strlen(data->a);
 }
 
 void	precision_s(t_fields *fields, t_data *data)
@@ -28,7 +28,7 @@ void	precision_s(t_fields *fields, t_data *data)
 	if (fields->precision >= 0 && fields->precision < (int)data->a_len)
 	{
 		data->a[fields->precision] = '\0';
-		data->a_len = strlen(data->a);
+		data->a_len = ft_strlen(data->a);
 	}
 }
 
@@ -45,14 +45,14 @@ void	width_s(t_fields *fields, t_data *data)
 		}
 		data->b_dup = data->b;
 		if (fields->is_minus)
-			memcpy(data->b_dup, data->a, data->a_len);
+			ft_memcpy(data->b_dup, data->a, data->a_len);
 		else
-			memcpy(data->b_dup + (fields->width - data->a_len), data->a,
+			ft_memcpy(data->b_dup + (fields->width - data->a_len), data->a,
 					data->a_len);
 		data->b[fields->width] = '\0';
 		free(data->a);
 		data->a = data->b;
-		data->a_len = strlen(data->a);
+		data->a_len = ft_strlen(data->a);
 	}
 }
 

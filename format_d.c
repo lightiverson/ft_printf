@@ -6,7 +6,7 @@
 /*   By: kawish <kawish@student.codam.nl>             +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2021/02/05 14:51:41 by kawish        #+#    #+#                 */
-/*   Updated: 2021/03/04 10:46:15 by kawish        ########   odam.nl         */
+/*   Updated: 2021/03/05 14:01:51 by kawish        ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,7 +21,7 @@ void	get_data_d(t_fields *fields, t_data *data, int dval)
 		return ;
 	}
 	data->a_dup = data->a;
-	data->a_len = strlen(data->a);
+	data->a_len = ft_strlen(data->a);
 	data->a_digits = get_alnum(data->a);
 }
 

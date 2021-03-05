@@ -6,7 +6,7 @@
 /*   By: kawish <kawish@student.codam.nl>             +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2021/02/25 18:51:38 by kawish        #+#    #+#                 */
-/*   Updated: 2021/03/04 10:49:11 by kawish        ########   odam.nl         */
+/*   Updated: 2021/03/05 14:02:10 by kawish        ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,7 +25,7 @@ void	prepend_0x(t_fields *fields, t_data *data)
 	free(data->a);
 	data->a = data->b;
 	data->a_dup = data->a;
-	data->a_len = strlen(data->a);
+	data->a_len = ft_strlen(data->a);
 }
 
 void	get_data_p(t_fields *fields, t_data *data, unsigned long pval)
@@ -37,7 +37,7 @@ void	get_data_p(t_fields *fields, t_data *data, unsigned long pval)
 		return ;
 	}
 	data->a_dup = data->a;
-	data->a_len = strlen(data->a);
+	data->a_len = ft_strlen(data->a);
 	data->a_digits = get_alnum(data->a);
 }
 

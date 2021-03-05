@@ -6,7 +6,7 @@
 /*   By: kawish <kawish@student.codam.nl>             +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2021/02/07 14:33:30 by kawish        #+#    #+#                 */
-/*   Updated: 2021/03/04 12:29:27 by kawish        ########   odam.nl         */
+/*   Updated: 2021/03/05 15:08:26 by kawish        ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,8 +45,8 @@ static	const char	*set_precision(const char *p_fmt, va_list ap,
 			if (*p_fmt == '-')
 				p_fmt++;
 			else
-				fields->precision = atoi(p_fmt);
-			while (isdigit(*p_fmt))
+				fields->precision = ft_atoi(p_fmt);
+			while (ft_isdigit(*p_fmt))
 				p_fmt++;
 		}
 	}
@@ -75,8 +75,8 @@ static	const char	*set_width(const char *p_fmt, va_list ap, t_fields *fields)
 			fields->is_minus = 1;
 			p_fmt++;
 		}
-		fields->width = atoi(p_fmt);
-		while (isdigit(*p_fmt))
+		fields->width = ft_atoi(p_fmt);
+		while (ft_isdigit(*p_fmt))
 			p_fmt++;
 	}
 	return (p_fmt);
@@ -88,7 +88,7 @@ const char	*set_fields(const char *p_fmt, va_list ap, t_fields *fields)
 	if (*p_fmt == ' ')
 	{
 		write(1, " ", 1);
-		while (isspace(*p_fmt))
+		while (ft_isspace(*p_fmt))
 			p_fmt++;
 	}
 	p_fmt = set_flags(p_fmt, fields);
