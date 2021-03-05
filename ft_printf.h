@@ -6,7 +6,7 @@
 /*   By: kawish <kawish@student.codam.nl>             +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2021/01/09 10:17:02 by kawish        #+#    #+#                 */
-/*   Updated: 2021/03/04 12:13:01 by kawish        ########   odam.nl         */
+/*   Updated: 2021/03/05 11:04:43 by kawish        ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,7 +36,7 @@ typedef struct s_data
 typedef struct s_fields
 {
 	int		count;
-	int		is_minus;
+	_Bool	is_minus;
 	char	padding_char;
 	int		width;
 	int		precision;
