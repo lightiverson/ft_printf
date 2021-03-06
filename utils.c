@@ -6,7 +6,7 @@
 /*   By: kawish <kawish@student.codam.nl>             +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2021/02/05 14:55:01 by kawish        #+#    #+#                 */
-/*   Updated: 2021/03/05 15:17:10 by kawish        ########   odam.nl         */
+/*   Updated: 2021/03/06 12:29:02 by kawish        ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,6 +23,11 @@ int	is_nonzerodigit(int c)
 	else
 		return (0);
 }
+
+/* Gets number of alphanumerical characters.
+
+char *s - string to check
+*/
 
 int	get_alnum(char *s)
 {
@@ -51,10 +56,14 @@ char	*str_toupper(char *str)
 	return (str);
 }
 
-/*
-** zalloc: Custom function that mallocs,
-** checks if malloc has worked,
-** and fills the malloced array with CHAR C.
+/* Variation on calloc function.
+
+	Mallocs an array of size (count * size),
+	and fills the array with c.
+
+size_t count -- number of memory blocks to allocate
+size_t size -- size of single memory block to allocate
+char c -- character to fill allocated memory with
 */
 
 void	*zalloc(size_t count, size_t size, char c)

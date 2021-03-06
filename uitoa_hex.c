@@ -6,7 +6,7 @@
 /*   By: kawish <kawish@student.codam.nl>             +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2021/02/23 11:36:09 by kawish        #+#    #+#                 */
-/*   Updated: 2021/03/04 18:11:40 by kawish        ########   odam.nl         */
+/*   Updated: 2021/03/06 12:45:59 by kawish        ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -52,6 +52,21 @@ static unsigned long	get_largest_exponent(unsigned long n)
 	i = i - 1;
 	return (i);
 }
+
+/* Variation on libft's itoa.
+
+Edited to work with unsigned long n. And more
+importantly convert base 10 number to base 16.
+
+Uses mathematical flow of:
+1.	x equals the largest exponent of 16 that fits into n.
+2.	y equals n divided by x. y is the first base 16 digit
+	starting from left to right. 
+3.	n equals the remainder from n divided by x.
+4.	decrease the exponential by 1.
+
+unsigned long n -- number to convert
+*/
 
 char	*uitoa_hex(unsigned long n)
 {

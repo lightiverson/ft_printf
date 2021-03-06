@@ -6,7 +6,7 @@
 /*   By: kgajadie <kgajadie@student.codam.nl>         +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2020/11/22 12:02:05 by kgajadie      #+#    #+#                 */
-/*   Updated: 2021/03/02 12:39:26 by kgajadie      ########   odam.nl         */
+/*   Updated: 2021/03/06 12:30:21 by kawish        ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,6 +44,11 @@ static	size_t	ft_intlen(unsigned int n)
 	}
 	return (len);
 }
+
+/* Variation on libft's itoa to work with unsigned int.
+
+unsigned int n -- number to convert
+*/
 
 char	*uitoa(unsigned int n)
 {

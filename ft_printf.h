@@ -6,7 +6,7 @@
 /*   By: kawish <kawish@student.codam.nl>             +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2021/01/09 10:17:02 by kawish        #+#    #+#                 */
-/*   Updated: 2021/03/05 15:13:48 by kawish        ########   odam.nl         */
+/*   Updated: 2021/03/05 18:37:24 by kawish        ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -50,8 +50,8 @@ void		format_s(t_fields *fields, const char *sval);
 /* format_c.c */
 void		format_c(t_fields *fields, unsigned char cval);
 
-/* format_d.c */
-void		format_d(t_fields *fields, int dval);
+/* format_di.c */
+void		format_di(t_fields *fields, int dval);
 
 /* format_u.c */
 void		format_u(t_fields *fields, unsigned int uval);

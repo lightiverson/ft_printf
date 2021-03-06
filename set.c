@@ -6,11 +6,18 @@
 /*   By: kawish <kawish@student.codam.nl>             +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2021/02/07 14:33:30 by kawish        #+#    #+#                 */
-/*   Updated: 2021/03/05 15:08:26 by kawish        ########   odam.nl         */
+/*   Updated: 2021/03/05 17:03:13 by kawish        ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_printf.h"
+
+/* Sets the is_minus and padding_char members of the fields struct.
+
+const char *p_fmt -- duplicate pointer to original fmt string
+t_fields *fields -- pointer to struct that contains information
+	on fields
+*/
 
 static	const char	*set_flags(const char *p_fmt, t_fields *fields)
 {
@@ -24,6 +31,14 @@ static	const char	*set_flags(const char *p_fmt, t_fields *fields)
 	}
 	return (p_fmt);
 }
+
+/* Sets the precision member of the fields struct.
+
+const char *p_fmt -- duplicate pointer to original fmt string
+va_list ap -- arguments pointer to list of unnamed arguments
+t_fields *fields -- pointer to struct that contains information
+	on fields
+*/
 
 static	const char	*set_precision(const char *p_fmt, va_list ap,
 		t_fields *fields)
@@ -53,6 +68,14 @@ static	const char	*set_precision(const char *p_fmt, va_list ap,
 	return (p_fmt);
 }
 
+/* Sets the width member of the fields struct.
+
+const char *p_fmt -- duplicate pointer to original fmt string
+va_list ap -- arguments pointer to list of unnamed arguments
+t_fields *fields -- pointer to struct that contains information
+	on fields
+*/
+
 static	const char	*set_width(const char *p_fmt, va_list ap, t_fields *fields)
 {
 	int	x;
@@ -81,6 +104,18 @@ static	const char	*set_width(const char *p_fmt, va_list ap, t_fields *fields)
 	}
 	return (p_fmt);
 }
+
+/* Iterates over the conversion characters and sets the fields
+	struct accordingly.
+
+returns pointer to the position in the string where
+set_fields() left off.
+
+const char *p_fmt -- duplicate pointer to original fmt string
+va_list ap -- arguments pointer to list of unnamed arguments
+t_fields *fields -- pointer to struct that contains information
+	on fields
+*/
 
 const char	*set_fields(const char *p_fmt, va_list ap, t_fields *fields)
 {

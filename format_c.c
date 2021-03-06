@@ -6,11 +6,21 @@
 /*   By: kawish <kawish@student.codam.nl>             +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2021/02/09 14:39:10 by kawish        #+#    #+#                 */
-/*   Updated: 2021/03/04 10:47:25 by kawish        ########   odam.nl         */
+/*   Updated: 2021/03/06 10:10:10 by kawish        ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_printf.h"
+
+/* Handles %c conversion specifier.
+
+Prints char to standard output along with conversions
+due to formatting.
+
+t_fields *fields -- pointer to struct that contains information
+	on fields
+unsigned char cval -- variadic argument
+*/
 
 void	format_c(t_fields *fields, unsigned char cval)
 {

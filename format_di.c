@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        ::::::::            */
-/*   format_x.c                                         :+:    :+:            */
+/*   format_di.c                                        :+:    :+:            */
 /*                                                     +:+                    */
 /*   By: kawish <kawish@student.codam.nl>             +#+                     */
 /*                                                   +#+                      */
-/*   Created: 2021/02/20 20:50:23 by kawish        #+#    #+#                 */
-/*   Updated: 2021/03/06 10:51:44 by kawish        ########   odam.nl         */
+/*   Created: 2021/02/05 14:51:41 by kawish        #+#    #+#                 */
+/*   Updated: 2021/03/06 10:45:25 by kawish        ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,12 +28,12 @@ t_fields *fields -- pointer to struct that contains information
 	on fields
 t_data *data -- pointer to struct that contains information on
 	the variadic argument to be formatted and printed
-unsigned int xval -- variadic argument
+int dval -- variadic argument
 */
 
-void	get_data_x(t_fields *fields, t_data *data, unsigned int xval)
+void	get_data_di(t_fields *fields, t_data *data, int dval)
 {
-	data->a = uitoa_hex(xval);
+	data->a = ft_itoa(dval);
 	if (!data->a)
 	{
 		fields->count = -1;
@@ -44,21 +44,21 @@ void	get_data_x(t_fields *fields, t_data *data, unsigned int xval)
 	data->a_digits = get_alnum(data->a);
 }
 
-/* Handles %x and %X conversion specifiers.
+/* Handles %d and %i conversion specifiers.
 
-Converts unsigned int to formatted string. And
-	outputs it to the standard output.
+Converts integers to formatted string. And outputs it
+to the standard output.
 
 t_fields *fields -- pointer to struct that contains information
 	on fields
-unsigned int xval -- variadic argument
+int dval -- variadic argument
 */
 
-void	format_x(t_fields *fields, unsigned int xval)
+void	format_di(t_fields *fields, int dval)
 {
 	t_data	data;
 
-	get_data_x(fields, &data, xval);
+	get_data_di(fields, &data, dval);
 	if (fields->count == -1)
 		return ;
 	precision_diuxp(fields, &data);
@@ -67,8 +67,6 @@ void	format_x(t_fields *fields, unsigned int xval)
 	width_diuxp(&data, fields);
 	if (fields->count == -1)
 		return ;
-	if (fields->conv_char == 'X')
-		data.a = str_toupper(data.a);
 	ft_putstr_fd(data.a, 1);
 	fields->count = fields->count + data.a_len;
 	free(data.a);

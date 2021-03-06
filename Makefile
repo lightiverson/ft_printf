@@ -6,7 +6,7 @@
 #    By: kawish <kawish@student.codam.nl>             +#+                      #
 #                                                    +#+                       #
 #    Created: 2021/01/09 09:52:36 by kawish        #+#    #+#                  #
-#    Updated: 2021/03/02 13:12:06 by kgajadie      ########   odam.nl          #
+#    Updated: 2021/03/05 18:37:24 by kawish        ########   odam.nl          #
 #                                                                              #
 # **************************************************************************** #
 
@@ -15,7 +15,7 @@ OBJ_FILES = ft_printf.o \
 			set.o \
 			format_s.o \
 			format_c.o \
-			format_d.o \
+			format_di.o \
 			format_u.o \
 			format_x.o \
 			format_p.o \
