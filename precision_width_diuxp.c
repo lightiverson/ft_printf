@@ -6,7 +6,7 @@
 /*   By: kawish <kawish@student.codam.nl>             +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2021/02/23 12:56:31 by kawish        #+#    #+#                 */
-/*   Updated: 2021/03/06 12:24:44 by kawish        ########   odam.nl         */
+/*   Updated: 2021/03/06 13:13:32 by kawish        ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -77,8 +77,8 @@ void	precision_diuxp(t_fields *fields, t_data *data)
 		data->b_dup = data->b;
 		if (*data->a == '-')
 			diuxp_nega_helper(data);
-		ft_memcpy(data->b_dup + (fields->precision - data->a_digits), data->a_dup,
-				ft_strlen(data->a_dup));
+		ft_memcpy(data->b_dup + (fields->precision - data->a_digits),
+			data->a_dup, ft_strlen(data->a_dup));
 		data->b_dup[fields->precision] = '\0';
 		free(data->a);
 		data->a = data->b;

@@ -6,14 +6,14 @@
 /*   By: kawish <kawish@student.codam.nl>             +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2021/01/09 10:17:02 by kawish        #+#    #+#                 */
-/*   Updated: 2021/03/05 18:37:24 by kawish        ########   odam.nl         */
+/*   Updated: 2021/03/06 13:20:40 by kawish        ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef FT_PRINTF_H
 # define FT_PRINTF_H
 
-# include "../libft/libft.h"
+# include "./libft/libft.h"
 # include <stdarg.h>
 
 /* Struct to unify data needed to handle %d, %i, %u, %U, %p, %x */
