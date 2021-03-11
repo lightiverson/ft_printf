@@ -3,7 +3,7 @@ A personal rewrite of stdio.h's printf function. It was coded to be easily exten
 
 The main purpose of this project was to study variadic arguments. Additionally, this code will prove usefull in future projects. Since stdio.h's printf is not allowed.
 
-A more detailed explanation on the library's functions can be found in in the [assignment sheet](en.subject.pdf).
+A more detailed explanation of this project can be found in in the [assignment sheet](en.subject.pdf).
 
 ## Installing
 1. Use git to clone this repository (the instructions will assume you've done this instead of clicked on "Download ZIP)
