@@ -1,9 +1,9 @@
 # ft_printf
-A personal rewrite of stdio.h's printf function. It was coded to be easily extendible.
 
-The main purpose of this project was to study variadic arguments. Additionally, this code will prove usefull in future projects. Since stdio.h's printf is not allowed.
+The versatility of the printf function in C represents a great exercise in programming for us. This project is of moderate difficulty. It will enable you to discover variadic functions in C.
 
-A more detailed explanation of this project can be found in in the [assignment sheet](en.subject.pdf).
+
+The key to a successful ft_printf is a well-structured and good extensible code.
 
 ## Installing
 1. Use git to clone this repository (the instructions will assume you've done this instead of clicked on "Download ZIP)
