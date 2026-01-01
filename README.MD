@@ -2,7 +2,7 @@
 
 Recode printf().
 
-The goal is to learn about variadic functions. This exercise is of moderate difficulty. The keyis wel-structured and extensible code.
+The goal is to learn about variadic functions. This exercise is of moderate difficulty. The key is wel-structured and extensible code.
 
 Grade: 100/100
 
